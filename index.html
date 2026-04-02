@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Sreenidhi | Premium Plotted Development</title>
+    <!-- Tailwind CSS v3 + Google Fonts + Font Awesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Poppins', 'system-ui', 'sans-serif'],
+                        'body': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-slow': 'float 8s ease-in-out infinite',
+                        'glow-pulse': 'glowPulse 2s ease-in-out infinite alternate',
+                        'shimmer': 'shimmer 2s linear infinite',
+                        'scale-gentle': 'scaleGentle 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        glowPulse: {
+                            '0%': { boxShadow: '0 0 5px rgba(234,179,8,0.3)', borderColor: 'rgba(234,179,8,0.4)' },
+                            '100%': { boxShadow: '0 0 25px rgba(234,179,8,0.8)', borderColor: '#eab308' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' },
+                        },
+                        scaleGentle: {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(1.02)' },
+                        }
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(circle at 50% 50%, var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Poppins:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background: #fefcf5;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #ece9df;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #c99e2e;
+            border-radius: 12px;
+        }
+
+        .card-hover {
+            transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 30px 40px -20px rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-gold {
+            background: linear-gradient(95deg, #ca8a04, #fbbf24, #eab308);
+            background-size: 200% auto;
+            transition: all 0.3s;
+        }
+
+        .btn-gold:hover {
+            background-position: right center;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(234, 179, 8, 0.4);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: #eab308;
+            transition: 0.3s ease;
+        }
+
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        .active-page:after {
+            width: 100%;
+            background: #eab308;
+        }
+
+        .site-plan-container {
+            transition: transform 0.4s ease, box-shadow 0.4s;
+        }
+
+        .site-plan-container:hover {
+            transform: scale(1.01);
+            box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.3);
+        }
+
+        .floating-badge {
+            animation: floatBadge 4s infinite;
+        }
+
+        @keyframes floatBadge {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .hover-grow-img {
+            transition: transform 0.5s ease, filter 0.3s;
+        }
+
+        .group:hover .hover-grow-img {
+            transform: scale(1.05);
+            filter: brightness(1.05);
+        }
+
+        .gold-text-gradient {
+            background: linear-gradient(135deg, #eab308, #b45309);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .why-choose-card {
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        .why-choose-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-scrolled {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(12px) !important;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.02) !important;
+            border-bottom-color: rgba(245, 158, 11, 0.3) !important;
+        }
+
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.2, 0.95, 0.4, 1.1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 35px -12px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 0.85;
+        }
+
+        .project-overlay {
+            transition: all 0.3s ease;
+        }
+
+        /* Additional projects hidden initially */
+        .hidden-project {
+            display: none;
+        }
+
+        .projects-grid {
+            transition: all 0.5s ease;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ==================== NAVIGATION (UPDATED) ================= -->
+    <nav id="mainNav"
+        class="fixed top-0 left-0 w-full z-50 bg-white/70 backdrop-blur-sm shadow-sm border-b border-amber-200/40 transition-all duration-300">
+        <div class="container mx-auto px-10 lg:px-8 py-3 flex justify-between items-center">
+            <!-- Logo Section -->
+            <div class="flex items-center gap-2 group cursor-pointer mr-10">
+                <i
+                    class="fas fa-crown text-amber-600 text-3xl group-hover:rotate-12 transition-transform duration-300"></i>
+                <span class="font-display font-extrabold text-2xl tracking-tight text-stone-800">SREENIDHI<span
+                        class="text-amber-600">.</span></span>
+            </div>
+
+            <!-- Navigation Links - Moved to right with increased gap from logo -->
+            <div class="hidden md:flex gap-8 lg:gap-10 font-semibold text-stone-700 ml-auto">
+                <a href="#home" class="nav-link hover:text-amber-600 transition">Home</a>
+                <a href="#projects" class="nav-link hover:text-amber-600 transition">Our Projects</a>
+                <a href="#gallery" class="nav-link hover:text-amber-600 transition">Gallery</a>
+                <a href="#blogs" class="nav-link hover:text-amber-600 transition">Blogs</a>
+                <a href="#about" class="nav-link hover:text-amber-600 transition">About Us</a>
+                <a href="#contact" class="nav-link hover:text-amber-600 transition">Contact Us</a>
+            </div>
+
+            <!-- Enquire Button & Mobile Menu -->
+            <div class="flex gap-3">
+                <a href="#contact"
+                    class="hidden md:block btn-gold text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-md transition-all">Enquire
+                    Now <i class="fas fa-arrow-right ml-1"></i></a>
+                <button id="mobileMenuBtn" class="md:hidden text-2xl text-stone-700"><i
+                        class="fas fa-bars"></i></button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu"
+            class="md:hidden hidden bg-white/95 backdrop-blur-lg border-t border-amber-100 px-5 py-5 flex flex-col gap-4 shadow-xl">
+            <a href="#home" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
+                    class="fas fa-home w-5"></i>Home</a>
+            <a href="#projects" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
+                    class="fas fa-building w-5"></i>Our Projects</a>
+            <a href="#gallery" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
+                    class="fas fa-images w-5"></i>Gallery</a>
+            <a href="#blogs" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
+                    class="fas fa-blog w-5"></i>Blogs</a>
+            <a href="#about" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
+                    class="fas fa-info-circle w-5"></i>About Us</a>
+            <a href="#contact" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
+                    class="fas fa-phone-alt w-5"></i>Contact Us</a>
+            <a href="#contact" class="bg-amber-600 text-white text-center py-3 rounded-full mt-2 shadow-md">Book a Site
+                Visit</a>
+        </div>
+    </nav>
+
+    <!-- ==================== HOME / HERO SECTION ================= -->
+    <section id="home" class="relative pt-28 pb-16 md:pt-40 md:pb-28 overflow-hidden bg-cover bg-center bg-no-repeat"
+        style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+        <div class="absolute inset-0 bg-black/50"></div>
+        <div class="container mx-auto px-5 lg:px-10 relative z-10">
+            <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div
+                        class="inline-flex items-center gap-2 bg-amber-100/90 backdrop-blur-sm rounded-full px-5 py-2 border border-amber-400 shadow-sm floating-badge">
+                        <i class="fas fa-check-circle text-amber-700 text-sm"></i>
+                        <span class="text-amber-800 font-bold tracking-wide">DTCP APPROVED | 20 ACRES</span>
+                    </div>
+                    <h1
+                        class="font-display text-5xl md:text-7xl font-extrabold leading-tight tracking-tight text-white drop-shadow-lg">
+                        Your Legacy at <span class="gold-text-gradient">Sreenidhi</span></h1>
+                    <p class="text-white/90 text-lg max-w-lg leading-relaxed drop-shadow">Premium residential plotted
+                        development with wide roads, canal frontage, and unmatched connectivity.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <div
+                            class="flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 shadow-sm hover:shadow transition text-white">
+                            <i class="fas fa-road text-amber-400"></i><span class="text-sm font-medium">1 min from
+                                Highway</span>
+                        </div>
+                        <div
+                            class="flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 shadow-sm text-white">
+                            <i class="fas fa-building text-amber-400"></i><span class="text-sm font-medium">Behind
+                                Collector's Bungalow</span>
+                        </div>
+                        <div
+                            class="flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 shadow-sm text-white">
+                            <i class="fas fa-bus text-amber-400"></i><span class="text-sm font-medium">5km to Bus
+                                Stand</span>
+                        </div>
+                    </div>
+                    <div class="pt-4 flex gap-5">
+                        <a href="#contact"
+                            class="btn-gold text-white px-8 py-3 rounded-full font-bold transition-all shadow-xl inline-flex items-center gap-2">Explore
+                            Plots <i class="fas fa-arrow-right text-sm"></i></a>
+                        <a href="#masterplan"
+                            class="border-2 border-amber-400 text-amber-100 px-6 py-3 rounded-full font-semibold hover:bg-amber-500/20 transition backdrop-blur-sm">View
+                            Layout</a>
+                    </div>
+                </div>
+                <div class="hidden lg:block"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== MASTERPLAN ================= -->
+    <section id="masterplan" class="py-20 bg-white relative">
+        <div class="container mx-auto px-5 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span
+                    class="text-amber-600 font-bold tracking-wider uppercase text-sm bg-amber-100 px-4 py-1 rounded-full">Precision
+                    Layout</span>
+                <h2 class="font-display text-4xl md:text-5xl font-extrabold mt-3 text-stone-800">Masterplan <span
+                        class="border-b-4 border-amber-400">Blueprint</span></h2>
+                <p class="text-stone-500 mt-4">Thoughtfully designed plotted development with optimal road networks.</p>
+            </div>
+            <div class="site-plan-container bg-stone-900 rounded-2xl overflow-hidden shadow-2xl transition-all">
+                <div class="bg-gradient-to-br from-stone-800 to-stone-950 p-5 md:p-7">
+                    <div class="relative overflow-x-auto">
+                        <div class="min-w-[780px] md:min-w-full text-white/90">
+                            <div class="flex justify-between text-xs mb-3 px-2"><span><i
+                                        class="fas fa-road text-amber-400"></i> Canal Road 33'</span><span><i
+                                        class="fas fa-road text-amber-400"></i> Proposed 40' Arterial</span><span><i
+                                        class="fas fa-th-large"></i> Residential Plots</span></div>
+                            <div class="bg-black/20 rounded-xl p-4 border border-amber-500/40">
+                                <div class="grid grid-cols-12 gap-1 text-[11px] font-mono">
+                                    <div class="col-span-12 flex border-b border-stone-600 pb-1 mb-2">
+                                        <div class="w-24 text-amber-300">CANAL 33'</div>
+                                        <div class="flex-1 text-center">Existing Road</div>
+                                        <div class="w-24 text-right">Others Land</div>
+                                    </div>
+                                    <div class="col-span-12 grid grid-cols-12 gap-1 mt-1">
+                                        <div class="col-span-3 grid grid-cols-4 gap-1">
+                                            <div class="bg-amber-800/50 p-1 rounded text-center">125</div>
+                                            <div class="bg-amber-800/50 p-1 rounded">126</div>
+                                            <div class="bg-amber-800/50 p-1 rounded">127</div>
+                                            <div class="bg-amber-800/50 p-1 rounded">128</div>
+                                            <div class="bg-amber-800/50 p-1 rounded">129</div>
+                                            <div class="bg-amber-800/50 p-1 rounded">130</div>
+                                            <div class="bg-amber-800/50 p-1 rounded">131</div>
+                                            <div class="bg-amber-800/50 p-1 rounded">132</div>
+                                        </div>
+                                        <div
+                                            class="col-span-2 text-center text-amber-300 text-[10px] flex items-center justify-center bg-stone-700/50 rounded">
+                                            40' ROAD</div>
+                                        <div class="col-span-3 grid grid-cols-4 gap-1">
+                                            <div class="bg-amber-800/40 p-1 rounded">100</div>
+                                            <div class="bg-amber-800/40 p-1 rounded">99</div>
+                                            <div class="bg-amber-800/40 p-1 rounded">98</div>
+                                            <div class="bg-amber-800/40 p-1 rounded">97</div>
+                                            <div>96</div>
+                                            <div>95</div>
+                                            <div>94</div>
+                                            <div>93</div>
+                                        </div>
+                                        <div class="col-span-4 grid grid-cols-4 gap-1">
+                                            <div class="bg-stone-600/60 p-1 rounded">72</div>
+                                            <div>71</div>
+                                            <div>70</div>
+                                            <div>69</div>
+                                            <div>68</div>
+                                            <div>67</div>
+                                            <div>66</div>
+                                            <div>65</div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="col-span-12 mt-2 text-amber-400/70 text-[10px] flex justify-between border-t border-stone-700 pt-2">
+                                        <span>📐 Plot depths: 489'-4" to 469'-4"</span><span>📐 Rear row dimensions:
+                                            122'-3" - 117'-3"</span><span><i class="fas fa-draw-polygon"></i> DTCP
+                                            Layout Sanctioned</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-center text-stone-300 text-xs italic">*Indicative site plan | Plot
+                                orientation subject to final allotment</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6 mt-12">
+                <div
+                    class="flex items-center gap-4 bg-amber-50 p-5 rounded-2xl shadow-sm hover:shadow-md transition-all">
+                    <i class="fas fa-ruler-combined text-amber-600 text-3xl"></i>
+                    <div>
+                        <h3 class="font-black">40 Ft & 33 Ft Roads</h3>
+                        <p class="text-sm text-stone-500">Wider carriageways & footpaths</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 bg-amber-50 p-5 rounded-2xl shadow-sm"><i
+                        class="fas fa-water text-amber-600 text-3xl"></i>
+                    <div>
+                        <h3 class="font-black">Canal Frontage</h3>
+                        <p class="text-sm text-stone-500">Scenic eastern side</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 bg-amber-50 p-5 rounded-2xl shadow-sm"><i
+                        class="fas fa-bolt text-amber-600 text-3xl"></i>
+                    <div>
+                        <h3 class="font-black">Underground Utilities</h3>
+                        <p class="text-sm text-stone-500">Power, water & drainage</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== AMENITIES ================= -->
+    <section id="amenities" class="py-20 bg-stone-100/80">
+        <div class="container mx-auto px-5 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="font-display text-4xl font-black text-stone-800">World-Class <span
+                        class="text-amber-600">Amenities</span></h2>
+                <p class="text-stone-500">Designed for modern families & luxury living</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-7">
+                <div class="bg-white rounded-2xl p-6 text-center card-hover shadow-md group">
+                    <div
+                        class="w-20 h-20 bg-amber-100 rounded-2xl flex items-center justify-center mx-auto mb-5 group-hover:bg-amber-200 transition">
+                        <i class="fas fa-tree text-amber-700 text-3xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl">Central Park</h3>
+                    <p class="text-stone-500 text-sm">Lush green zones & jogging track</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 text-center card-hover shadow-md">
+                    <div class="w-20 h-20 bg-amber-100 rounded-2xl flex items-center justify-center mx-auto mb-5"><i
+                            class="fas fa-dumbbell text-amber-700 text-3xl"></i></div>
+                    <h3 class="font-bold text-xl">Fitness Zone</h3>
+                    <p class="text-stone-500 text-sm">Open gym & yoga pavilion</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 text-center card-hover shadow-md">
+                    <div class="w-20 h-20 bg-amber-100 rounded-2xl flex items-center justify-center mx-auto mb-5"><i
+                            class="fas fa-child text-amber-700 text-3xl"></i></div>
+                    <h3 class="font-bold text-xl">Kids Play Area</h3>
+                    <p class="text-stone-500 text-sm">Safe & vibrant playground</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 text-center card-hover shadow-md">
+                    <div class="w-20 h-20 bg-amber-100 rounded-2xl flex items-center justify-center mx-auto mb-5"><i
+                            class="fas fa-shield-alt text-amber-700 text-3xl"></i></div>
+                    <h3 class="font-bold text-xl">Gated Security</h3>
+                    <p class="text-stone-500 text-sm">24/7 CCTV & manned entry</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== WHY CHOOSE SREENIDHI ================= -->
+    <section id="why-choose" class="py-20 bg-white">
+        <div class="container mx-auto px-5 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span
+                    class="text-amber-600 font-bold tracking-wider uppercase text-sm bg-amber-100 px-4 py-1 rounded-full">Why
+                    Invest</span>
+                <h2 class="font-display text-4xl md:text-5xl font-extrabold mt-3 text-stone-800">Why Choose <span
+                        class="gold-text-gradient">Sreenidhi?</span></h2>
+                <p class="text-stone-500 mt-4">Experience a lifestyle of prestige, growth, and serenity.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div
+                    class="why-choose-card bg-gradient-to-br from-amber-50 to-white rounded-2xl p-7 border border-amber-100 shadow-md">
+                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mb-5"><i
+                            class="fas fa-map-marker-alt text-amber-600 text-2xl"></i></div>
+                    <h3 class="text-xl font-black text-stone-800 mb-2">Prime Connectivity</h3>
+                    <p class="text-stone-600 leading-relaxed">Located just 1 minute from the main highway, behind
+                        Collector's Bungalow.</p>
+                </div>
+                <div
+                    class="why-choose-card bg-gradient-to-br from-amber-50 to-white rounded-2xl p-7 border border-amber-100 shadow-md">
+                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mb-5"><i
+                            class="fas fa-file-contract text-amber-600 text-2xl"></i></div>
+                    <h3 class="text-xl font-black text-stone-800 mb-2">DTCP Approved Layout</h3>
+                    <p class="text-stone-600 leading-relaxed">Fully approved residential plotted development with bank
+                        loan eligibility.</p>
+                </div>
+                <div
+                    class="why-choose-card bg-gradient-to-br from-amber-50 to-white rounded-2xl p-7 border border-amber-100 shadow-md">
+                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mb-5"><i
+                            class="fas fa-hard-hat text-amber-600 text-2xl"></i></div>
+                    <h3 class="text-xl font-black text-stone-800 mb-2">Future-Ready Infrastructure</h3>
+                    <p class="text-stone-600 leading-relaxed">Wide roads, underground electricity, 24/7 water supply.
+                    </p>
+                </div>
+                <div
+                    class="why-choose-card bg-gradient-to-br from-amber-50 to-white rounded-2xl p-7 border border-amber-100 shadow-md">
+                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mb-5"><i
+                            class="fas fa-leaf text-amber-600 text-2xl"></i></div>
+                    <h3 class="text-xl font-black text-stone-800 mb-2">Eco-Friendly & Green</h3>
+                    <p class="text-stone-600 leading-relaxed">Lush parks, tree-lined avenues, canal frontage.</p>
+                </div>
+                <div
+                    class="why-choose-card bg-gradient-to-br from-amber-50 to-white rounded-2xl p-7 border border-amber-100 shadow-md">
+                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mb-5"><i
+                            class="fas fa-chart-line text-amber-600 text-2xl"></i></div>
+                    <h3 class="text-xl font-black text-stone-800 mb-2">High Appreciation Zone</h3>
+                    <p class="text-stone-600 leading-relaxed">Proximity to key landmarks ensures rapid price growth.</p>
+                </div>
+                <div
+                    class="why-choose-card bg-gradient-to-br from-amber-50 to-white rounded-2xl p-7 border border-amber-100 shadow-md">
+                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mb-5"><i
+                            class="fas fa-shield-alt text-amber-600 text-2xl"></i></div>
+                    <h3 class="text-xl font-black text-stone-800 mb-2">Secured Enclave</h3>
+                    <p class="text-stone-600 leading-relaxed">Gated community with CCTV surveillance and manned
+                        security.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== OUR PROJECTS SECTION with VIEW MORE button ================= -->
+    <section id="projects" class="py-20 bg-stone-100/70">
+        <div class="container mx-auto px-5 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span
+                    class="text-amber-600 font-bold tracking-wider uppercase text-sm bg-amber-100 px-4 py-1 rounded-full">Portfolio</span>
+                <h2 class="font-display text-4xl md:text-5xl font-extrabold mt-3 text-stone-800">Our <span
+                        class="gold-text-gradient">Signature Projects</span></h2>
+                <p class="text-stone-500 mt-4">Delivering excellence in plotted developments across prime locations.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsGrid">
+                <!-- Project 1 -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="relative h-56 overflow-hidden"><img
+                            src="https://placehold.co/600x400/EEE6D6/9c7e2e?text=Sreenidhi+Greens" alt="Project 1"
+                            class="w-full h-full object-cover hover-grow-img transition duration-500">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent project-overlay opacity-0 flex items-end p-4">
+                            <span class="text-white font-bold">DTCP Approved | 90% Sold</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-black text-stone-800">Sreenidhi Greens</h3><span
+                                class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded-full">Completed</span>
+                        </div>
+                        <p class="text-stone-500 text-sm mb-3">Prime location with wide roads & parks</p>
+                        <div class="flex justify-between text-sm"><span><i
+                                    class="fas fa-map-marker-alt text-amber-600"></i> East Zone</span><span><i
+                                    class="fas fa-chart-line"></i> 32% Appreciation</span></div>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="relative h-56 overflow-hidden"><img
+                            src="https://placehold.co/600x400/EAD9BB/9c7e2e?text=Sreenidhi+Enclave" alt="Project 2"
+                            class="w-full h-full object-cover hover-grow-img">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent project-overlay opacity-0 flex items-end p-4">
+                            <span class="text-white font-bold">Launching Soon</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-black text-stone-800">Sreenidhi Enclave</h3><span
+                                class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">New Launch</span>
+                        </div>
+                        <p class="text-stone-500 text-sm mb-3">Canal front plots with premium amenities</p>
+                        <div class="flex justify-between text-sm"><span><i class="fas fa-water text-amber-600"></i>
+                                Canal View</span><span><i class="fas fa-road"></i> 40' Road</span></div>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="relative h-56 overflow-hidden"><img
+                            src="https://placehold.co/600x400/DCCBA8/9c7e2e?text=Sreenidhi+City" alt="Project 3"
+                            class="w-full h-full object-cover hover-grow-img">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent project-overlay opacity-0 flex items-end p-4">
+                            <span class="text-white font-bold">Limited Plots</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-black text-stone-800">Sreenidhi City</h3><span
+                                class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded-full">Ongoing</span>
+                        </div>
+                        <p class="text-stone-500 text-sm mb-3">Strategic highway access, premium corner plots</p>
+                        <div class="flex justify-between text-sm"><span><i class="fas fa-highway text-amber-600"></i> 1
+                                min Highway</span><span><i class="fas fa-building"></i> Gated Community</span></div>
+                    </div>
+                </div>
+                <!-- Project 4 - Hidden initially -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg hidden-project">
+                    <div class="relative h-56 overflow-hidden"><img
+                            src="https://placehold.co/600x400/F5ECD9/9c7e2e?text=Sreenidhi+Valley" alt="Project 4"
+                            class="w-full h-full object-cover hover-grow-img">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent project-overlay opacity-0 flex items-end p-4">
+                            <span class="text-white font-bold">Premium Plots</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-black text-stone-800">Sreenidhi Valley</h3><span
+                                class="bg-purple-100 text-purple-700 text-xs px-2 py-1 rounded-full">Upcoming</span>
+                        </div>
+                        <p class="text-stone-500 text-sm mb-3">Scenic valley views with enhanced green cover</p>
+                        <div class="flex justify-between text-sm"><span><i class="fas fa-mountain text-amber-600"></i>
+                                Valley View</span><span><i class="fas fa-chart-line"></i> Pre-Launch Offer</span></div>
+                    </div>
+                </div>
+                <!-- Project 5 - Hidden initially -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg hidden-project">
+                    <div class="relative h-56 overflow-hidden"><img
+                            src="https://placehold.co/600x400/EFE3CF/9c7e2e?text=Sreenidhi+Heights" alt="Project 5"
+                            class="w-full h-full object-cover hover-grow-img">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent project-overlay opacity-0 flex items-end p-4">
+                            <span class="text-white font-bold">Limited Inventory</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-black text-stone-800">Sreenidhi Heights</h3><span
+                                class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded-full">Featured</span>
+                        </div>
+                        <p class="text-stone-500 text-sm mb-3">Elevated plots with panoramic city views</p>
+                        <div class="flex justify-between text-sm"><span><i class="fas fa-eye text-amber-600"></i>
+                                Panoramic View</span><span><i class="fas fa-road"></i> 40' Main Road</span></div>
+                    </div>
+                </div>
+                <!-- Project 6 - Hidden initially -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg hidden-project">
+                    <div class="relative h-56 overflow-hidden"><img
+                            src="https://placehold.co/600x400/E8DDC8/9c7e2e?text=Sreenidhi+Springs" alt="Project 6"
+                            class="w-full h-full object-cover hover-grow-img">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent project-overlay opacity-0 flex items-end p-4">
+                            <span class="text-white font-bold">Almost Sold Out</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-black text-stone-800">Sreenidhi Springs</h3><span
+                                class="bg-red-100 text-red-700 text-xs px-2 py-1 rounded-full">Last Few</span>
+                        </div>
+                        <p class="text-stone-500 text-sm mb-3">Waterfront plots with natural spring view</p>
+                        <div class="flex justify-between text-sm"><span><i class="fas fa-water text-amber-600"></i>
+                                Waterfront</span><span><i class="fas fa-chart-line"></i> 28% Return</span></div>
+                    </div>
+                </div>
+            </div>
+            <!-- View More Button -->
+            <div class="text-center mt-12">
+                <button id="viewMoreBtn"
+                    class="btn-gold text-white px-8 py-3 rounded-full font-bold transition-all shadow-lg inline-flex items-center gap-2">View
+                    More Projects <i class="fas fa-arrow-down text-sm"></i></button>
+                <button id="viewLessBtn"
+                    class="hidden btn-gold text-white px-8 py-3 rounded-full font-bold transition-all shadow-lg inline-flex items-center gap-2">View
+                    Less <i class="fas fa-arrow-up text-sm"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== GALLERY ================= -->
+    <section id="gallery" class="py-20 bg-white">
+        <div class="container mx-auto px-5 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="font-display text-4xl font-black">Visual <span class="text-amber-600">Walkthrough</span></h2>
+                <p class="text-stone-500">Experience the essence of Sreenidhi</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="group relative overflow-hidden rounded-2xl shadow-xl h-64 cursor-pointer"><img
+                        src="https://placehold.co/800x600/EEE6D6/9c7e2e?text=Site+Entrance+View"
+                        class="w-full h-full object-cover hover-grow-img">
+                    <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition flex items-end p-4">
+                        <span class="text-white font-bold text-xl">Grand Entrance</span>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl shadow-xl h-64"><img
+                        src="https://placehold.co/800x600/EAD9BB/9c7e2e?text=Proposed+40ft+Road"
+                        class="w-full h-full object-cover hover-grow-img">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4"><span
+                            class="text-white font-bold">40' Wide Roads & Landscaping</span></div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl shadow-xl h-64"><img
+                        src="https://placehold.co/800x600/DCCBA8/9c7e2e?text=Canal+Frontage"
+                        class="w-full h-full object-cover hover-grow-img">
+                    <div class="absolute inset-0 bg-black/30 group-hover:bg-black/20 flex items-end p-4"><span
+                            class="text-white font-bold">Scenic Canal Front</span></div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl shadow-xl h-64 md:col-span-2"><img
+                        src="https://placehold.co/1200x600/EFE3CF/9c7e2e?text=Central+Park+Vista"
+                        class="w-full h-full object-cover hover-grow-img">
+                    <div class="absolute inset-0 bg-black/30 flex items-end p-4"><span
+                            class="text-white font-bold text-xl">Central Park & Community Areas</span></div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl shadow-xl h-64"><img
+                        src="https://placehold.co/600x800/F5ECD9/9c7e2e?text=Plot+Layout+Indicative"
+                        class="w-full h-full object-cover hover-grow-img">
+                    <div class="absolute inset-0 bg-black/30 flex items-end p-4"><span class="text-white font-bold">DTCP
+                            Approved Layout</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==================== CONTACT SECTION - BOOKINGS OPEN FORM with Background Image ================= -->
+    <section id="contact" class="relative py-20 overflow-hidden bg-cover bg-center bg-no-repeat"
+        style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80');">
+        <!-- Dark overlay for better readability -->
+        <div class="absolute inset-0 bg-black/60"></div>
+
+        <div class="container mx-auto px-5 lg:px-8 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <!-- Booking Badge -->
+                <div
+                    class="inline-flex items-center gap-2 bg-amber-500/90 backdrop-blur-sm rounded-full px-5 py-2 border border-amber-300 shadow-lg mb-6 animate-pulse">
+                    <i class="fas fa-calendar-check text-white text-sm"></i>
+                    <span class="text-white font-bold tracking-wide">🎉 BOOKINGS ARE NOW OPEN | LIMITED PLOTS
+                        AVAILABLE</span>
+                </div>
+
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-white drop-shadow-lg">Secure Your <span
+                        class="text-amber-400">Dream Plot</span> Today</h2>
+                <p class="text-white/90 text-lg mb-8">Register now to get exclusive launch offers, flexible payment
+                    plans & site visit.</p>
+
+                <!-- Booking Form -->
+                <form id="inquiryFormGlobal"
+                    class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/30 shadow-2xl">
+                    <div class="grid md:grid-cols-2 gap-5">
+                        <input type="text" id="fullName" placeholder="Full Name *"
+                            class="bg-white/20 rounded-xl p-3 text-white placeholder-white/70 outline-none focus:ring-2 focus:ring-amber-400 transition border border-white/20">
+                        <input type="email" id="emailId" placeholder="Email Address *"
+                            class="bg-white/20 rounded-xl p-3 text-white placeholder-white/70 outline-none focus:ring-2 focus:ring-amber-400 transition border border-white/20">
+                        <input type="tel" id="mobileNo" placeholder="Phone Number *"
+                            class="bg-white/20 rounded-xl p-3 text-white placeholder-white/70 outline-none focus:ring-2 focus:ring-amber-400 transition border border-white/20">
+                        <select id="plotInterest"
+                            class="bg-white/20 rounded-xl p-3 text-white outline-none focus:ring-2 focus:ring-amber-400 transition border border-white/20">
+                            <option value="" class="text-stone-800">Select Preferred Plot Size *</option>
+                            <option value="1200 sqft" class="text-stone-800">1200 sq.ft - Starting at ₹49,999/sq.yd
+                            </option>
+                            <option value="1800 sqft" class="text-stone-800">1800 sq.ft - Starting at ₹59,999/sq.yd
+                            </option>
+                            <option value="2400+ sqft" class="text-stone-800">2400+ sq.ft - Premium Corner Plots
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-5 mt-5">
+                        <select id="bookingSlot"
+                            class="bg-white/20 rounded-xl p-3 text-white outline-none focus:ring-2 focus:ring-amber-400 transition border border-white/20">
+                            <option value="" class="text-stone-800">Preferred Site Visit Date</option>
+                            <option value="This Weekend" class="text-stone-800">This Weekend</option>
+                            <option value="Next Week" class="text-stone-800">Next Week</option>
+                            <option value="Custom Date" class="text-stone-800">Custom Date</option>
+                        </select>
+                        <select id="paymentPlan"
+                            class="bg-white/20 rounded-xl p-3 text-white outline-none focus:ring-2 focus:ring-amber-400 transition border border-white/20">
+                            <option value="" class="text-stone-800">Preferred Payment Plan</option>
+                            <option value="Down Payment" class="text-stone-800">Down Payment (15% Discount)</option>
+                            <option value="Construction Linked" class="text-stone-800">Construction Linked Plan</option>
+                            <option value="Flexi EMI" class="text-stone-800">Flexi EMI with Bank Loan</option>
+                        </select>
+                    </div>
+
+                    <textarea rows="3" id="msgDetails" placeholder="Message / Special Requests (Optional)"
+                        class="mt-5 w-full bg-white/20 rounded-xl p-3 text-white placeholder-white/70 outline-none focus:ring-2 focus:ring-amber-400 transition border border-white/20"></textarea>
+
+                    <!-- Booking Highlights -->
+                    <div class="flex flex-wrap justify-center gap-4 mt-5 text-sm text-white/80">
+                        <span class="flex items-center gap-1"><i class="fas fa-check-circle text-amber-400"></i> Zero
+                            GST on select plots</span>
+                        <span class="flex items-center gap-1"><i class="fas fa-check-circle text-amber-400"></i> Free
+                            Stamp Duty for first 10 bookings</span>
+                        <span class="flex items-center gap-1"><i class="fas fa-check-circle text-amber-400"></i> Bank
+                            Loan Approved</span>
+                    </div>
+
+                    <button type="submit"
+                        class="mt-6 w-full btn-gold text-stone-900 font-extrabold py-3 rounded-xl transition-all text-lg shadow-xl hover:scale-[1.02] transform duration-200">
+                        <i class="fas fa-ticket-alt mr-2"></i> Book Your Plot Now <i
+                            class="fas fa-arrow-right ml-2"></i>
+                    </button>
+
+                    <p class="text-xs text-white/60 mt-4">*Limited inventory available on first-come-first-serve basis.
+                        T&C apply.</p>
+                    <div id="contactSuccessMsg"
+                        class="hidden mt-4 p-3 bg-green-600 rounded-lg text-white text-center font-semibold"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== OFFICIAL FOOTER with EMAIL SUBSCRIBE ================= -->
+    <footer class="bg-stone-900 text-stone-300 border-t border-stone-800">
+        <div class="container mx-auto px-5 lg:px-8 py-12">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4"><i class="fas fa-crown text-amber-500 text-2xl"></i><span
+                            class="font-display font-bold text-xl text-white">SREENIDHI<span
+                                class="text-amber-500">.</span></span></div>
+                    <p class="text-sm leading-relaxed">DTCP approved plotted development spread across 20 acres of prime
+                        land with world-class infrastructure.</p>
+                    <div class="flex gap-4 mt-4"><i
+                            class="fab fa-facebook-f hover:text-amber-400 cursor-pointer text-lg"></i><i
+                            class="fab fa-instagram hover:text-amber-400 cursor-pointer text-lg"></i><i
+                            class="fab fa-youtube hover:text-amber-400 cursor-pointer text-lg"></i><i
+                            class="fab fa-linkedin-in hover:text-amber-400 cursor-pointer text-lg"></i></div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white text-lg mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#home" class="hover:text-amber-400 transition">Home</a></li>
+                        <li><a href="#masterplan" class="hover:text-amber-400 transition">Masterplan</a></li>
+                        <li><a href="#amenities" class="hover:text-amber-400 transition">Amenities</a></li>
+                        <li><a href="#why-choose" class="hover:text-amber-400 transition">Why Choose</a></li>
+                        <li><a href="#projects" class="hover:text-amber-400 transition">Our Projects</a></li>
+                        <li><a href="#gallery" class="hover:text-amber-400 transition">Gallery</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white text-lg mb-4">Contact Info</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><i class="fas fa-map-marker-alt text-amber-400 w-5"></i> Behind Collector's Bungalow, NH-44,
+                            Sreenidhi Nagar</li>
+                        <li><i class="fas fa-phone-alt text-amber-400 w-5"></i> +91 98765 43210</li>
+                        <li><i class="fas fa-envelope text-amber-400 w-5"></i> sales@sreenidhi.co.in</li>
+                        <li><i class="fas fa-clock text-amber-400 w-5"></i> Mon-Sun: 9AM - 7PM</li>
+                    </ul>
+                </div>
+                <!-- Email Subscription Section (replaced Legal & Approvals) -->
+                <div>
+                    <h4 class="font-bold text-white text-lg mb-4">Subscribe for Updates</h4>
+                    <p class="text-sm text-stone-400 mb-3">Get latest project news, price drops & exclusive offers.</p>
+                    <form id="subscribeForm" class="flex flex-col gap-3"><input type="email" id="subscribeEmail"
+                            placeholder="Your Email Address"
+                            class="bg-stone-800 border border-stone-700 rounded-xl p-3 text-white placeholder-stone-400 outline-none focus:ring-2 focus:ring-amber-400 transition"><button
+                            type="submit"
+                            class="btn-gold text-stone-900 font-bold py-2.5 rounded-xl transition-all text-sm">Subscribe
+                            <i class="fas fa-paper-plane ml-1"></i></button>
+                        <div id="subscribeMsg" class="text-xs text-green-400 hidden"></div>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-stone-800 mt-10 pt-6 text-center text-sm text-stone-400">
+                <p>© 2025 SREENIDHI PLOTTED DEVELOPMENT. All Rights Reserved. | Designed with <i
+                        class="fas fa-heart text-amber-500"></i> for modern living</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+
+
+        // Subscribe form handler
+        const subscribeForm = document.getElementById('subscribeForm');
+        const subscribeMsg = document.getElementById('subscribeMsg');
+        subscribeForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('subscribeEmail').value.trim();
+            if (!email || !email.includes('@')) { alert("Please enter a valid email address"); return; }
+            subscribeMsg.classList.remove('hidden');
+            subscribeMsg.innerHTML = "✅ Subscribed successfully! You'll receive our updates.";
+            subscribeMsg.classList.add('block');
+            document.getElementById('subscribeEmail').value = '';
+            setTimeout(() => { subscribeMsg.classList.add('hidden'); subscribeMsg.classList.remove('block'); }, 4000);
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function (e) { let target = this.getAttribute('href'); if (target !== "#") { e.preventDefault(); document.querySelector(target)?.scrollIntoView({ behavior: 'smooth' }); mobileMenu.classList.add('hidden'); } }); });
+
+        // Navbar scroll effect
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => { if (window.scrollY > 50) { nav.classList.add('nav-scrolled'); } else { nav.classList.remove('nav-scrolled'); } });
+
+        // View More / View Less functionality for projects
+        const viewMoreBtn = document.getElementById('viewMoreBtn');
+        const viewLessBtn = document.getElementById('viewLessBtn');
+        const hiddenProjects = document.querySelectorAll('.hidden-project');
+
+        viewMoreBtn.addEventListener('click', () => {
+            hiddenProjects.forEach(project => {
+                project.classList.remove('hidden-project');
+                project.style.display = 'block';
+            });
+            viewMoreBtn.classList.add('hidden');
+            viewLessBtn.classList.remove('hidden');
+        });
+
+        viewLessBtn.addEventListener('click', () => {
+            hiddenProjects.forEach(project => {
+                project.classList.add('hidden-project');
+                project.style.display = 'none';
+            });
+            viewLessBtn.classList.add('hidden');
+            viewMoreBtn.classList.remove('hidden');
+        });
+
+        // Initially hide extra projects
+        hiddenProjects.forEach(project => {
+            project.style.display = 'none';
+        });
+
+        // Form submission handler for the booking form
+        const contactForm = document.getElementById('inquiryFormGlobal');
+        const successDiv = document.getElementById('contactSuccessMsg');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('fullName')?.value.trim();
+                const email = document.getElementById('emailId')?.value.trim();
+                const phone = document.getElementById('mobileNo')?.value.trim();
+                const plotSize = document.getElementById('plotInterest')?.value;
+
+                if (!name || !email || !phone) {
+                    alert("Please fill all required fields (Name, Email, Phone)");
+                    return;
+                }
+                if (!email.includes('@')) {
+                    alert("Please enter a valid email address");
+                    return;
+                }
+                if (phone.length < 10) {
+                    alert("Please enter a valid 10-digit phone number");
+                    return;
+                }
+
+                successDiv.classList.remove('hidden');
+                successDiv.innerHTML = "✅ Booking request submitted, " + name + "! Our sales team will call you within 30 minutes to confirm your slot. 🎉";
+                contactForm.reset();
+                setTimeout(() => {
+                    successDiv.classList.add('hidden');
+                }, 6000);
+            });
+        }
+    </script>
+</body>
+
+</html>
