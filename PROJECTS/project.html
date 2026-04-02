@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Sreenidhi | Our Projects - Premium Plotted Developments</title>
+    <!-- Tailwind CSS v3 + Google Fonts + Font Awesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Poppins', 'system-ui', 'sans-serif'],
+                        'body': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow-pulse': 'glowPulse 2s ease-in-out infinite alternate',
+                        'shimmer': 'shimmer 2s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        glowPulse: {
+                            '0%': { boxShadow: '0 0 5px rgba(234,179,8,0.3)', borderColor: 'rgba(234,179,8,0.4)' },
+                            '100%': { boxShadow: '0 0 25px rgba(234,179,8,0.8)', borderColor: '#eab308' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' },
+                        },
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(circle at 50% 50%, var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Poppins:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background: #fefcf5;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #ece9df;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #c99e2e;
+            border-radius: 12px;
+        }
+
+        .btn-gold {
+            background: linear-gradient(95deg, #ca8a04, #fbbf24, #eab308);
+            background-size: 200% auto;
+            transition: all 0.3s;
+        }
+
+        .btn-gold:hover {
+            background-position: right center;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(234, 179, 8, 0.4);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: #eab308;
+            transition: 0.3s ease;
+        }
+
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        .active-page:after {
+            width: 100%;
+            background: #eab308;
+        }
+
+        .nav-scrolled {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(12px) !important;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08) !important;
+        }
+
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.2, 0.95, 0.4, 1.1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 35px -12px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 0.85;
+        }
+
+        .project-overlay {
+            transition: all 0.3s ease;
+        }
+
+        .hover-grow-img {
+            transition: transform 0.5s ease, filter 0.3s;
+        }
+
+        .group:hover .hover-grow-img {
+            transform: scale(1.05);
+            filter: brightness(1.05);
+        }
+
+        .gold-text-gradient {
+            background: linear-gradient(135deg, #eab308, #b45309);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .floating-badge {
+            animation: floatBadge 4s infinite;
+        }
+
+        @keyframes floatBadge {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+        /* Floating WhatsApp Icon */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            z-index: 1000;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+            background-color: #20b859;
+        }
+
+        /* Tooltip for WhatsApp */
+        .whatsapp-tooltip {
+            position: absolute;
+            right: 70px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #1f2937;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .whatsapp-float:hover .whatsapp-tooltip {
+            opacity: 1;
+            visibility: visible;
+            right: 75px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            background-color: #ca8a04;
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            text-decoration: none;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+            background-color: #b8860b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ==================== FLOATING WHATSAPP ICON ================= -->
+    <a href="https://wa.me/919876543210?text=Hello%21%20I%27m%20interested%20in%20Sreenidhi%20plots.%20Please%20share%20more%20details."
+        target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-tooltip">Chat with us on WhatsApp</span>
+    </a>
+
+    <!-- ==================== SCROLL TO TOP BUTTON ================= -->
+    <div class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- ==================== NAVIGATION ================= -->
+    <nav id="mainNav"
+        class="fixed top-0 left-0 w-full z-50 bg-white/70 backdrop-blur-sm shadow-sm border-b border-amber-200/40 transition-all duration-300">
+        <div class="container mx-auto px-5 lg:px-8 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-2 group cursor-pointer">
+                <i
+                    class="fas fa-crown text-amber-600 text-3xl group-hover:rotate-12 transition-transform duration-300"></i>
+                <span class="font-display font-extrabold text-2xl tracking-tight text-stone-800">SREENIDHI<span
+                        class="text-amber-600">.</span></span>
+            </div>
+            <div class="hidden md:flex gap-8 lg:gap-10 font-semibold text-stone-700 ml-auto">
+                <a href="../index.html" class="nav-link hover:text-amber-600 transition">Home</a>
+                <a href="./project.html" class="nav-link text-amber-600 active-page transition">Our Projects</a>
+                <a href="#" class="nav-link hover:text-amber-600 transition">Gallery</a>
+                <a href="#" class="nav-link hover:text-amber-600 transition">Blogs</a>
+                <a href="../ABOUT/about.html" class="nav-link hover:text-amber-600 transition">About Us</a>
+                <a href="../CONTACT/contact.html" class="nav-link hover:text-amber-600 transition">Contact Us</a>
+            </div>
+            <div class="flex gap-3">
+                <a href="#"
+                    class="hidden md:block btn-gold text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-md transition-all">Enquire
+                    Now <i class="fas fa-arrow-right ml-1"></i></a>
+                <button id="mobileMenuBtn" class="md:hidden text-2xl text-stone-700"><i
+                        class="fas fa-bars"></i></button>
+            </div>
+        </div>
+        <div id="mobileMenu"
+            class="md:hidden hidden bg-white/95 backdrop-blur-lg border-t border-amber-100 px-5 py-5 flex flex-col gap-4 shadow-xl">
+            <a href="../index.html" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
+                    class="fas fa-home w-5"></i>Home</a>
+            <a href="./project.html" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
+                    class="fas fa-building w-5"></i>Our Projects</a>
+            <a href="#" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
+                    class="fas fa-images w-5"></i>Gallery</a>
+            <a href="#" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
+                    class="fas fa-blog w-5"></i>Blogs</a>
+            <a href="../ABOUT/about.html" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
+                    class="fas fa-info-circle w-5"></i>About Us</a>
+            <a href="../CONTACT/contact.html" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
+                    class="fas fa-phone-alt w-5"></i>Contact Us</a>
+            <a href="#" class="bg-amber-600 text-white text-center py-3 rounded-full mt-2 shadow-md">Book a Site
+                Visit</a>
+        </div>
+    </nav>
+
+    <!-- ==================== HERO SECTION ================= -->
+    <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-cover bg-center bg-no-repeat"
+        style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+        <div class="absolute inset-0 bg-black/55"></div>
+        <div class="container mx-auto px-5 lg:px-8 relative z-10 text-center">
+            <div
+                class="inline-flex items-center gap-2 bg-amber-100/90 backdrop-blur-sm rounded-full px-5 py-2 border border-amber-400 shadow-sm floating-badge mb-6">
+                <i class="fas fa-building text-amber-700 text-sm"></i>
+                <span class="text-amber-800 font-bold tracking-wide">OUR PORTFOLIO</span>
+            </div>
+            <h1 class="font-display text-5xl md:text-6xl font-extrabold text-white drop-shadow-lg">Our <span
+                    class="gold-text-gradient">Signature Projects</span></h1>
+            <p class="text-white/90 text-lg max-w-2xl mx-auto mt-4">Discover our premium plotted developments crafted
+                with precision, luxury, and strategic locations.</p>
+        </div>
+    </section>
+
+    <!-- ==================== PROJECTS SECTION ================= -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-5 lg:px-8">
+            <!-- Filter Tabs -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12">
+                <button
+                    class="filter-btn active-filter px-6 py-2 rounded-full font-semibold transition-all bg-amber-600 text-white shadow-md"
+                    data-filter="all">All Projects</button>
+                <button
+                    class="filter-btn px-6 py-2 rounded-full font-semibold transition-all bg-stone-100 text-stone-700 hover:bg-amber-100"
+                    data-filter="ongoing">Ongoing</button>
+                <button
+                    class="filter-btn px-6 py-2 rounded-full font-semibold transition-all bg-stone-100 text-stone-700 hover:bg-amber-100"
+                    data-filter="completed">Completed</button>
+                <button
+                    class="filter-btn px-6 py-2 rounded-full font-semibold transition-all bg-stone-100 text-stone-700 hover:bg-amber-100"
+                    data-filter="upcoming">Upcoming</button>
+            </div>
+
+            <!-- Projects Grid - All 15 Projects Displayed -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsGrid">
+                <!-- Project 1 - Ongoing -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg border border-stone-100"
+                    data-category="ongoing">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://placehold.co/600x400/EEE6D6/9c7e2e?text=Sreenidhi+Greens"
+                            alt="Sreenidhi Greens"
+                            class="w-full h-full object-cover hover-grow-img transition duration-500">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent project-overlay opacity-0 flex items-end p-4">
+                            <span class="text-white font-bold">DTCP Approved | 90% Sold</span>
+                        </div>
+                        <span
+                            class="absolute top-4 right-4 bg-green-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Ongoing</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-black text-stone-800">Sreenidhi Greens</h3>
+                            <i class="fas fa-map-marker-alt text-amber-500 text-sm"></i>
+                        </div>
+                        <p class="text-stone-500 text-sm mb-3">Prime location with wide roads, central park & premium
+                            amenities</p>
+                        <div class="flex justify-between items-center text-sm border-t border-stone-100 pt-3 mt-2">
+                            <span><i class="fas fa-chart-line text-amber-600"></i> 32% Appreciation</span>
+                            <span><i class="fas fa-road text-amber-600"></i> 40' & 33' Roads</span>
+                            <span class="font-bold text-amber-600">₹49,999/sq.yd</span>
+                        </div>
+                        <div class="mt-4 flex gap-2">
+                            <button
+                                class="w-full bg-stone-800 text-white py-2 rounded-full text-sm font-semibold hover:bg-amber-700 transition">View
+                                More</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 - Upcoming -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg border border-stone-100"
+                    data-category="upcoming">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://placehold.co/600x400/EAD9BB/9c7e2e?text=Sreenidhi+Enclave"
+                            alt="Sreenidhi Enclave" class="w-full h-full object-cover hover-grow-img">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent project-overlay opacity-0 flex items-end p-4">
+                            <span class="text-white font-bold">Launching Soon | Register Now</span>
+                        </div>
+                        <span
+                            class="absolute top-4 right-4 bg-purple-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Upcoming</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-black text-stone-800">Sreenidhi Enclave</h3>
+                            <i class="fas fa-water text-amber-500 text-sm"></i>
+                        </div>
+                        <p class="text-stone-500 text-sm mb-3">Canal front plots with premium amenities & breathtaking
+                            views</p>
+                        <div class="flex justify-between items-center text-sm border-t border-stone-100 pt-3 mt-2">
+                            <span><i class="fas fa-water text-amber-600"></i> Canal View</span>
+                            <span><i class="fas fa-road text-amber-600"></i> 40' Main Road</span>
+                            <span class="font-bold text-amber-600">Pre-Launch</span>
+                        </div>
+                        <div class="mt-4 flex gap-2">
+                            <button
+                                class="w-full bg-stone-800 text-white py-2 rounded-full text-sm font-semibold hover:bg-amber-700 transition">
+                                View More</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 - Ongoing -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg border border-stone-100"
+                    data-category="ongoing">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://placehold.co/600x400/DCCBA8/9c7e2e?text=Sreenidhi+City" alt="Sreenidhi City"
+                            class="w-full h-full object-cover hover-grow-img">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent project-overlay opacity-0 flex items-end p-4">
+                            <span class="text-white font-bold">Limited Plots Available</span>
+                        </div>
+                        <span
+                            class="absolute top-4 right-4 bg-green-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Ongoing</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-black text-stone-800">Sreenidhi City</h3>
+                            <i class="fas fa-highway text-amber-500 text-sm"></i>
+                        </div>
+                        <p class="text-stone-500 text-sm mb-3">Strategic highway access, premium corner plots with
+                            excellent connectivity</p>
+                        <div class="flex justify-between items-center text-sm border-t border-stone-100 pt-3 mt-2">
+                            <span><i class="fas fa-highway text-amber-600"></i> 1 min Highway</span>
+                            <span><i class="fas fa-building text-amber-600"></i> Gated Community</span>
+                            <span class="font-bold text-amber-600">₹59,999/sq.yd</span>
+                        </div>
+                        <div class="mt-4 flex gap-2">
+                            <button
+                                class="w-full bg-stone-800 text-white py-2 rounded-full text-sm font-semibold hover:bg-amber-700 transition">View
+                                More</button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Project 5 - Ongoing -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg border border-stone-100"
+                    data-category="ongoing">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://placehold.co/600x400/EFE3CF/9c7e2e?text=Sreenidhi+Heights"
+                            alt="Sreenidhi Heights" class="w-full h-full object-cover hover-grow-img">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent project-overlay opacity-0 flex items-end p-4">
+                            <span class="text-white font-bold">Limited Inventory</span>
+                        </div>
+                        <span
+                            class="absolute top-4 right-4 bg-green-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Ongoing</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-black text-stone-800">Sreenidhi Heights</h3>
+                            <i class="fas fa-eye text-amber-500 text-sm"></i>
+                        </div>
+                        <p class="text-stone-500 text-sm mb-3">Elevated plots with panoramic city views and premium
+                            location</p>
+                        <div class="flex justify-between items-center text-sm border-t border-stone-100 pt-3 mt-2">
+                            <span><i class="fas fa-eye text-amber-600"></i> Panoramic View</span>
+                            <span><i class="fas fa-road text-amber-600"></i> 40' Main Road</span>
+                            <span class="font-bold text-amber-600">₹69,999/sq.yd</span>
+                        </div>
+                        <div class="mt-4 flex gap-2">
+                            <button
+                                class="w-full bg-stone-800 text-white py-2 rounded-full text-sm font-semibold hover:bg-amber-700 transition">View
+                                More</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 - Upcoming -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg border border-stone-100"
+                    data-category="upcoming">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://placehold.co/600x400/E8DDC8/9c7e2e?text=Sreenidhi+Springs"
+                            alt="Sreenidhi Springs" class="w-full h-full object-cover hover-grow-img">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent project-overlay opacity-0 flex items-end p-4">
+                            <span class="text-white font-bold">Launching Q2 2025</span>
+                        </div>
+                        <span
+                            class="absolute top-4 right-4 bg-purple-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Upcoming</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-black text-stone-800">Sreenidhi Springs</h3>
+                            <i class="fas fa-water text-amber-500 text-sm"></i>
+                        </div>
+                        <p class="text-stone-500 text-sm mb-3">Waterfront plots with natural spring view and premium
+                            amenities</p>
+                        <div class="flex justify-between items-center text-sm border-t border-stone-100 pt-3 mt-2">
+                            <span><i class="fas fa-water text-amber-600"></i> Waterfront</span>
+                            <span><i class="fas fa-chart-line text-amber-600"></i> High Potential</span>
+                            <span class="font-bold text-amber-600">Pre-Register</span>
+                        </div>
+                        <div class="mt-4 flex gap-2">
+                            <button
+                                class="w-full bg-stone-800 text-white py-2 rounded-full text-sm font-semibold hover:bg-amber-700 transition">View
+                                More</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 7 - Premium Ongoing -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg border border-stone-100"
+                    data-category="ongoing">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://placehold.co/600x400/F0E6D2/9c7e2e?text=Sreenidhi+Grand" alt="Sreenidhi Grand"
+                            class="w-full h-full object-cover hover-grow-img transition duration-500">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent project-overlay opacity-0 flex items-end p-4">
+                            <span class="text-white font-bold">Premium Luxury Plots</span>
+                        </div>
+                        <span
+                            class="absolute top-4 right-4 bg-green-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Ongoing</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-black text-stone-800">Sreenidhi Grand</h3>
+                            <i class="fas fa-crown text-amber-500 text-sm"></i>
+                        </div>
+                        <p class="text-stone-500 text-sm mb-3">Luxury plotted development with clubhouse access and
+                            premium landscaping</p>
+                        <div class="flex justify-between items-center text-sm border-t border-stone-100 pt-3 mt-2">
+                            <span><i class="fas fa-crown text-amber-600"></i> Premium Zone</span>
+                            <span><i class="fas fa-road text-amber-600"></i> 50' Main Road</span>
+                            <span class="font-bold text-amber-600">₹79,999/sq.yd</span>
+                        </div>
+                        <div class="mt-4 flex gap-2">
+                            <button
+                                class="w-full bg-stone-800 text-white py-2 rounded-full text-sm font-semibold hover:bg-amber-700 transition">View
+                                More</button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Project 9 - Upcoming Featured -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg border border-amber-200"
+                    data-category="upcoming">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://placehold.co/600x400/F5E6D0/9c7e2e?text=Sreenidhi+Waterfront"
+                            alt="Sreenidhi Waterfront" class="w-full h-full object-cover hover-grow-img">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent project-overlay opacity-0 flex items-end p-4">
+                            <span class="text-white font-bold">Limited Waterfront Plots</span>
+                        </div>
+                        <span
+                            class="absolute top-4 right-4 bg-purple-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Upcoming</span>
+                        <span
+                            class="absolute bottom-4 left-4 bg-amber-500 text-white text-xs px-3 py-1 rounded-full font-semibold">🔥
+                            Most Anticipated</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-black text-stone-800">Sreenidhi Waterfront</h3>
+                            <i class="fas fa-water text-amber-500 text-sm"></i>
+                        </div>
+                        <p class="text-stone-500 text-sm mb-3">Exclusive lake-facing plots with private waterfront
+                            access</p>
+                        <div class="flex justify-between items-center text-sm border-t border-stone-100 pt-3 mt-2">
+                            <span><i class="fas fa-water text-amber-600"></i> Lake View</span>
+                            <span><i class="fas fa-ship text-amber-600"></i> Boat Club</span>
+                            <span class="font-bold text-amber-600">Launching Soon</span>
+                        </div>
+                        <div class="mt-4 flex gap-2">
+                            <button
+                                class="w-full bg-stone-800 text-white py-2 rounded-full text-sm font-semibold hover:bg-amber-700 transition">View
+                                More</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 10 - Ongoing Corner Plots -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg border border-stone-100"
+                    data-category="ongoing">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://placehold.co/600x400/EDE0CD/9c7e2e?text=Sreenidhi+Corners"
+                            alt="Sreenidhi Corners" class="w-full h-full object-cover hover-grow-img">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent project-overlay opacity-0 flex items-end p-4">
+                            <span class="text-white font-bold">Premium Corner Plots</span>
+                        </div>
+                        <span
+                            class="absolute top-4 right-4 bg-green-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Ongoing</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-black text-stone-800">Sreenidhi Corners</h3>
+                            <i class="fas fa-arrows-alt text-amber-500 text-sm"></i>
+                        </div>
+                        <p class="text-stone-500 text-sm mb-3">Corner plots with double road access and premium
+                            elevation</p>
+                        <div class="flex justify-between items-center text-sm border-t border-stone-100 pt-3 mt-2">
+                            <span><i class="fas fa-arrows-alt text-amber-600"></i> Double Road</span>
+                            <span><i class="fas fa-chart-line text-amber-600"></i> High ROI</span>
+                            <span class="font-bold text-amber-600">₹89,999/sq.yd</span>
+                        </div>
+                        <div class="mt-4 flex gap-2">
+                            <button
+                                class="w-full bg-stone-800 text-white py-2 rounded-full text-sm font-semibold hover:bg-amber-700 transition">View
+                                More</button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Project 12 - Upcoming Eco-Friendly -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg border border-stone-100"
+                    data-category="upcoming">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://placehold.co/600x400/F2E8D8/9c7e2e?text=Sreenidhi+EcoVillage"
+                            alt="Sreenidhi EcoVillage" class="w-full h-full object-cover hover-grow-img">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent project-overlay opacity-0 flex items-end p-4">
+                            <span class="text-white font-bold">Net Zero Community</span>
+                        </div>
+                        <span
+                            class="absolute top-4 right-4 bg-purple-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Upcoming</span>
+                        <span
+                            class="absolute bottom-4 left-4 bg-green-600 text-white text-xs px-3 py-1 rounded-full font-semibold">🌿
+                            Eco Certified</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-black text-stone-800">Sreenidhi EcoVillage</h3>
+                            <i class="fas fa-leaf text-amber-500 text-sm"></i>
+                        </div>
+                        <p class="text-stone-500 text-sm mb-3">India's first net-zero plotted development with
+                            solar-powered streets</p>
+                        <div class="flex justify-between items-center text-sm border-t border-stone-100 pt-3 mt-2">
+                            <span><i class="fas fa-leaf text-amber-600"></i> Net Zero</span>
+                            <span><i class="fas fa-solar-panel text-amber-600"></i> Solar Ready</span>
+                            <span class="font-bold text-amber-600">Pre-Launch</span>
+                        </div>
+                        <div class="mt-4 flex gap-2">
+                            <button
+                                class="w-full bg-stone-800 text-white py-2 rounded-full text-sm font-semibold hover:bg-amber-700 transition">View
+                                More</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 13 - Ongoing Commercial -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg border border-stone-100"
+                    data-category="ongoing">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://placehold.co/600x400/EBDFC9/9c7e2e?text=Sreenidhi+Hub" alt="Sreenidhi Hub"
+                            class="w-full h-full object-cover hover-grow-img">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent project-overlay opacity-0 flex items-end p-4">
+                            <span class="text-white font-bold">Mixed Use Development</span>
+                        </div>
+                        <span
+                            class="absolute top-4 right-4 bg-green-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Ongoing</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-black text-stone-800">Sreenidhi Hub</h3>
+                            <i class="fas fa-store text-amber-500 text-sm"></i>
+                        </div>
+                        <p class="text-stone-500 text-sm mb-3">Mixed-use development with residential plots and
+                            commercial spaces</p>
+                        <div class="flex justify-between items-center text-sm border-t border-stone-100 pt-3 mt-2">
+                            <span><i class="fas fa-store text-amber-600"></i> Commercial</span>
+                            <span><i class="fas fa-road text-amber-600"></i> Highway Access</span>
+                            <span class="font-bold text-amber-600">₹64,999/sq.yd</span>
+                        </div>
+                        <div class="mt-4 flex gap-2">
+                            <button
+                                class="w-full bg-stone-800 text-white py-2 rounded-full text-sm font-semibold hover:bg-amber-700 transition">View
+                                More</button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Project 15 - Ongoing Golf View -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg border border-stone-100"
+                    data-category="ongoing">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://placehold.co/600x400/F4EAD8/9c7e2e?text=Sreenidhi+Greenside"
+                            alt="Sreenidhi Greenside" class="w-full h-full object-cover hover-grow-img">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent project-overlay opacity-0 flex items-end p-4">
+                            <span class="text-white font-bold">Golf Course View</span>
+                        </div>
+                        <span
+                            class="absolute top-4 right-4 bg-green-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Ongoing</span>
+                        <span
+                            class="absolute bottom-4 left-4 bg-amber-500 text-white text-xs px-3 py-1 rounded-full font-semibold">⛳
+                            Premium</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-black text-stone-800">Sreenidhi Greenside</h3>
+                            <i class="fas fa-golf-ball text-amber-500 text-sm"></i>
+                        </div>
+                        <p class="text-stone-500 text-sm mb-3">Plots overlooking a world-class golf course with club
+                            membership</p>
+                        <div class="flex justify-between items-center text-sm border-t border-stone-100 pt-3 mt-2">
+                            <span><i class="fas fa-golf-ball text-amber-600"></i> Golf View</span>
+                            <span><i class="fas fa-road text-amber-600"></i> 50' Road</span>
+                            <span class="font-bold text-amber-600">₹99,999/sq.yd</span>
+                        </div>
+                        <div class="mt-4 flex gap-2">
+                            <button
+                                class="w-full bg-stone-800 text-white py-2 rounded-full text-sm font-semibold hover:bg-amber-700 transition">View
+                                More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== STATS SECTION ================= -->
+    <section class="py-16 bg-stone-900 text-white">
+        <div class="container mx-auto px-5 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div><i class="fas fa-building text-amber-400 text-4xl mb-3"></i>
+                    <h3 class="text-3xl font-bold">15+</h3>
+                    <p class="text-stone-400">Successful Projects</p>
+                </div>
+                <div><i class="fas fa-chart-line text-amber-400 text-4xl mb-3"></i>
+                    <h3 class="text-3xl font-bold">98%</h3>
+                    <p class="text-stone-400">Customer Satisfaction</p>
+                </div>
+                <div><i class="fas fa-home text-amber-400 text-4xl mb-3"></i>
+                    <h3 class="text-3xl font-bold">500+</h3>
+                    <p class="text-stone-400">Happy Families</p>
+                </div>
+                <div><i class="fas fa-calendar-check text-amber-400 text-4xl mb-3"></i>
+                    <h3 class="text-3xl font-bold">15+</h3>
+                    <p class="text-stone-400">Years of Excellence</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CTA SECTION ================= -->
+    <section class="py-16 bg-gradient-to-r from-amber-50 to-stone-100">
+        <div class="container mx-auto px-5 lg:px-8 text-center">
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-stone-800">Looking for Your Dream Plot?</h2>
+            <p class="text-stone-600 mt-3 mb-6">Get expert advice and exclusive deals on our ongoing projects.</p>
+            <a href="#"
+                class="btn-gold text-white px-8 py-3 rounded-full font-bold inline-flex items-center gap-2 shadow-lg">Schedule
+                a Site Visit <i class="fas fa-calendar-alt ml-1"></i></a>
+        </div>
+    </section>
+
+    <!-- ==================== OFFICIAL FOOTER with EMAIL SUBSCRIBE ================= -->
+    <footer class="bg-stone-900 text-stone-300 border-t border-stone-800">
+        <div class="container mx-auto px-5 lg:px-8 py-12">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4"><i class="fas fa-crown text-amber-500 text-2xl"></i><span
+                            class="font-display font-bold text-xl text-white">SREENIDHI<span
+                                class="text-amber-500">.</span></span></div>
+                    <p class="text-sm leading-relaxed">DTCP approved plotted development spread across 20 acres of prime
+                        land with world-class infrastructure.</p>
+                    <div class="flex gap-4 mt-4"><i
+                            class="fab fa-facebook-f hover:text-amber-400 cursor-pointer text-lg"></i><i
+                            class="fab fa-instagram hover:text-amber-400 cursor-pointer text-lg"></i><i
+                            class="fab fa-youtube hover:text-amber-400 cursor-pointer text-lg"></i><i
+                            class="fab fa-linkedin-in hover:text-amber-400 cursor-pointer text-lg"></i></div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white text-lg mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="./index.html" class="hover:text-amber-400 transition">Home</a></li>
+                        <li><a href="./PROJECTS/project.html" class="hover:text-amber-400 transition">Our Projects</a>
+                        </li>
+                        <li><a href="#amenities" class="hover:text-amber-400 transition">Gallery</a></li>
+                        <li><a href="#why-choose" class="hover:text-amber-400 transition">Blogs</a></li>
+                        <li><a href="./ABOUT/about.html" class="hover:text-amber-400 transition">About Us</a></li>
+                        <li><a href="./CONTACT/contact.html" class="hover:text-amber-400 transition">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white text-lg mb-4">Contact Info</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><i class="fas fa-map-marker-alt text-amber-400 w-5"></i> Behind Collector's Bungalow, NH-44,
+                            Sreenidhi Nagar</li>
+                        <li><i class="fas fa-phone-alt text-amber-400 w-5"></i> +91 98765 43210</li>
+                        <li><i class="fas fa-envelope text-amber-400 w-5"></i> sales@sreenidhi.co.in</li>
+                        <li><i class="fas fa-clock text-amber-400 w-5"></i> Mon-Sun: 9AM - 7PM</li>
+                    </ul>
+                </div>
+                <!-- Email Subscription Section (replaced Legal & Approvals) -->
+                <div>
+                    <h4 class="font-bold text-white text-lg mb-4">Subscribe for Updates</h4>
+                    <p class="text-sm text-stone-400 mb-3">Get latest project news, price drops & exclusive offers.</p>
+                    <form id="subscribeForm" class="flex flex-col gap-3"><input type="email" id="subscribeEmail"
+                            placeholder="Your Email Address"
+                            class="bg-stone-800 border border-stone-700 rounded-xl p-3 text-white placeholder-stone-400 outline-none focus:ring-2 focus:ring-amber-400 transition"><button
+                            type="submit"
+                            class="btn-gold text-stone-900 font-bold py-2.5 rounded-xl transition-all text-sm">Subscribe
+                            <i class="fas fa-paper-plane ml-1"></i></button>
+                        <div id="subscribeMsg" class="text-xs text-green-400 hidden"></div>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-stone-800 mt-10 pt-6 text-center text-sm text-stone-400">
+                <p>© 2025 SREENIDHI PLOTTED DEVELOPMENT. All Rights Reserved.  </p>
+                <p class="mt-2">Developed by <a href="https://www.vspazetechnologies.in" target="_blank"
+                        class="text-amber-400 hover:text-amber-300 transition font-medium">Vspaze Technologies</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileBtn) {
+            mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        }
+
+        // Navbar scroll effect
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Filter functionality - ALL 15 projects visible by default
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const allProjects = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active state
+                filterBtns.forEach(b => {
+                    b.classList.remove('active-filter', 'bg-amber-600', 'text-white');
+                    b.classList.add('bg-stone-100', 'text-stone-700');
+                });
+                btn.classList.add('active-filter', 'bg-amber-600', 'text-white');
+                btn.classList.remove('bg-stone-100', 'text-stone-700');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                // Filter all projects
+                allProjects.forEach(project => {
+                    const category = project.getAttribute('data-category');
+                    if (filterValue === 'all' || category === filterValue) {
+                        project.style.display = 'block';
+                    } else {
+                        project.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Subscribe form handler
+        const subscribeForm = document.getElementById('subscribeForm');
+        const subscribeMsg = document.getElementById('subscribeMsg');
+        if (subscribeForm) {
+            subscribeForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('subscribeEmail')?.value.trim();
+                if (!email || !email.includes('@')) {
+                    alert("Please enter a valid email address");
+                    return;
+                }
+                subscribeMsg.classList.remove('hidden');
+                subscribeMsg.innerHTML = "✅ Subscribed successfully!";
+                subscribeMsg.classList.add('block');
+                document.getElementById('subscribeEmail').value = '';
+                setTimeout(() => {
+                    subscribeMsg.classList.add('hidden');
+                    subscribeMsg.classList.remove('block');
+                }, 4000);
+            });
+        }
+
+          // Scroll to Top Button with Smooth Slow Scroll
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            const startPosition = window.pageYOffset;
+            const targetPosition = 0;
+            const distance = startPosition - targetPosition;
+            const duration = 2500; // Longer duration for slower scroll (1.5 seconds)
+            let startTime = null;
+
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const run = easeInOutCubic(timeElapsed, startPosition, -distance, duration);
+                window.scrollTo(0, run);
+                if (timeElapsed < duration) requestAnimationFrame(animation);
+            }
+
+            // Easing function for smooth slow motion
+            function easeInOutCubic(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t * t + b;
+                t -= 2;
+                return c / 2 * (t * t * t + 2) + b;
+            }
+
+            requestAnimationFrame(animation);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Sreenidhi | Contact Us - Premium Plotted Developments</title>
+    <!-- Tailwind CSS v3 + Google Fonts + Font Awesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Poppins', 'system-ui', 'sans-serif'],
+                        'body': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow-pulse': 'glowPulse 2s ease-in-out infinite alternate',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        glowPulse: {
+                            '0%': { boxShadow: '0 0 5px rgba(234,179,8,0.3)', borderColor: 'rgba(234,179,8,0.4)' },
+                            '100%': { boxShadow: '0 0 25px rgba(234,179,8,0.8)', borderColor: '#eab308' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Poppins:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background: #fefcf5;
+        }
+
+        /* Custom Smooth Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #ece9df;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #c99e2e;
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b8860b;
+        }
+
+        /* Firefox Scrollbar */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #c99e2e #ece9df;
+        }
+
+        .btn-gold {
+            background: linear-gradient(95deg, #ca8a04, #fbbf24, #eab308);
+            background-size: 200% auto;
+            transition: all 0.3s;
+        }
+
+        .btn-gold:hover {
+            background-position: right center;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(234, 179, 8, 0.4);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: #eab308;
+            transition: 0.3s ease;
+        }
+
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        .active-page:after {
+            width: 100%;
+            background: #eab308;
+        }
+
+        .nav-scrolled {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(12px) !important;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08) !important;
+        }
+
+        .floating-badge {
+            animation: floatBadge 4s infinite;
+        }
+
+        @keyframes floatBadge {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .gold-text-gradient {
+            background: linear-gradient(135deg, #eab308, #b45309);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .contact-card {
+            transition: all 0.4s cubic-bezier(0.2, 0.95, 0.4, 1.1);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        .input-focus:focus {
+            box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.2);
+            border-color: #eab308;
+        }
+
+        /* Floating WhatsApp Icon */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            z-index: 1000;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+            background-color: #20b859;
+        }
+
+        /* Tooltip for WhatsApp */
+        .whatsapp-tooltip {
+            position: absolute;
+            right: 70px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #1f2937;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .whatsapp-float:hover .whatsapp-tooltip {
+            opacity: 1;
+            visibility: visible;
+            right: 75px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            background-color: #ca8a04;
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            text-decoration: none;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+            background-color: #b8860b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ==================== FLOATING WHATSAPP ICON ================= -->
+    <a href="https://wa.me/919876543210?text=Hello%21%20I%27m%20interested%20in%20Sreenidhi%20plots.%20Please%20share%20more%20details."
+        target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-tooltip">Chat with us on WhatsApp</span>
+    </a>
+
+    <!-- ==================== SCROLL TO TOP BUTTON ================= -->
+    <div class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- ==================== NAVIGATION ================= -->
+    <nav id="mainNav"
+        class="fixed top-0 left-0 w-full z-50 bg-white/70 backdrop-blur-sm shadow-sm border-b border-amber-200/40 transition-all duration-300">
+        <div class="container mx-auto px-5 lg:px-8 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-2 group cursor-pointer">
+                <i
+                    class="fas fa-crown text-amber-600 text-3xl group-hover:rotate-12 transition-transform duration-300"></i>
+                <span class="font-display font-extrabold text-2xl tracking-tight text-stone-800">SREENIDHI<span
+                        class="text-amber-600">.</span></span>
+            </div>
+            <div class="hidden md:flex gap-8 lg:gap-10 font-semibold text-stone-700 ml-auto">
+                <a href="../index.html" class="nav-link hover:text-amber-600 transition">Home</a>
+                <a href="../PROJECTS/project.html" class="nav-link hover:text-amber-600 transition">Our Projects</a>
+                <a href="#" class="nav-link hover:text-amber-600 transition">Gallery</a>
+                <a href="#" class="nav-link hover:text-amber-600 transition">Blogs</a>
+                <a href="../ABOUT/about.html" class="nav-link hover:text-amber-600 transition">About Us</a>
+                <a href="../CONTACT/contact.html" class="nav-link text-amber-600 active-page transition">Contact Us</a>
+            </div>
+            <div class="flex gap-3">
+                <a href="#"
+                    class="hidden md:block btn-gold text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-md transition-all">Enquire
+                    Now <i class="fas fa-arrow-right ml-1"></i></a>
+                <button id="mobileMenuBtn" class="md:hidden text-2xl text-stone-700"><i
+                        class="fas fa-bars"></i></button>
+            </div>
+        </div>
+        <div id="mobileMenu"
+            class="md:hidden hidden bg-white/95 backdrop-blur-lg border-t border-amber-100 px-5 py-5 flex flex-col gap-4 shadow-xl">
+            <a href="../index.html" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
+                    class="fas fa-home w-5"></i>Home</a>
+            <a href="../PROJECTS/project.html" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
+                    class="fas fa-building w-5"></i>Our Projects</a>
+            <a href="#" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
+                    class="fas fa-images w-5"></i>Gallery</a>
+            <a href="#" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
+                    class="fas fa-blog w-5"></i>Blogs</a>
+            <a href="../ABOUT/about.html" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
+                    class="fas fa-info-circle w-5"></i>About Us</a>
+            <a href="../CONTACT/contact.html" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
+                    class="fas fa-phone-alt w-5"></i>Contact Us</a>
+            <a href="#" class="bg-amber-600 text-white text-center py-3 rounded-full mt-2 shadow-md">Book a Site
+                Visit</a>
+        </div>
+    </nav>
+
+    <!-- ==================== HERO SECTION ================= -->
+    <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-cover bg-center bg-no-repeat"
+        style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+        <div class="absolute inset-0 bg-black/55"></div>
+        <div class="container mx-auto px-5 lg:px-8 relative z-10 text-center">
+            <div
+                class="inline-flex items-center gap-2 bg-amber-100/90 backdrop-blur-sm rounded-full px-5 py-2 border border-amber-400 shadow-sm floating-badge mb-6">
+                <i class="fas fa-phone-alt text-amber-700 text-sm"></i>
+                <span class="text-amber-800 font-bold tracking-wide">GET IN TOUCH</span>
+            </div>
+            <h1 class="font-display text-5xl md:text-6xl font-extrabold text-white drop-shadow-lg">Contact <span
+                    class="gold-text-gradient">Us</span></h1>
+            <p class="text-white/90 text-lg max-w-2xl mx-auto mt-4">We're here to answer your questions and help you
+                find your dream plot.</p>
+        </div>
+    </section>
+
+    <!-- ==================== CONTACT INFO CARDS ================= -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-5 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Phone Card -->
+                <div
+                    class="contact-card bg-gradient-to-br from-amber-50 to-white rounded-2xl p-6 text-center shadow-md border border-amber-100">
+                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-phone-alt text-amber-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-stone-800">Phone</h3>
+                    <p class="text-stone-500 text-sm mt-2">Sales & Support</p>
+                    <p class="text-amber-600 font-semibold mt-2">+91 98765 43210</p>
+                    <p class="text-amber-600 font-semibold">+91 98765 43211</p>
+                </div>
+                <!-- Email Card -->
+                <div
+                    class="contact-card bg-gradient-to-br from-amber-50 to-white rounded-2xl p-6 text-center shadow-md border border-amber-100">
+                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-envelope text-amber-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-stone-800">Email</h3>
+                    <p class="text-stone-500 text-sm mt-2">Send us your queries</p>
+                    <p class="text-amber-600 font-semibold mt-2">sales@sreenidhi.co.in</p>
+                    <p class="text-amber-600 font-semibold">info@sreenidhi.co.in</p>
+                </div>
+                <!-- WhatsApp Card -->
+                <div
+                    class="contact-card bg-gradient-to-br from-amber-50 to-white rounded-2xl p-6 text-center shadow-md border border-amber-100">
+                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fab fa-whatsapp text-green-500 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-stone-800">WhatsApp</h3>
+                    <p class="text-stone-500 text-sm mt-2">Chat with us</p>
+                    <p class="text-green-600 font-semibold mt-2">+91 98765 43210</p>
+                    <p class="text-green-600 font-semibold">+91 98765 43211</p>
+                </div>
+                <!-- Hours Card -->
+                <div
+                    class="contact-card bg-gradient-to-br from-amber-50 to-white rounded-2xl p-6 text-center shadow-md border border-amber-100">
+                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-clock text-amber-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-stone-800">Working Hours</h3>
+                    <p class="text-stone-500 text-sm mt-2">Mon - Sat: 9:00 AM - 7:00 PM</p>
+                    <p class="text-stone-500">Sunday: 10:00 AM - 4:00 PM</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CONTACT FORM & MAP SECTION ================= -->
+    <section class="py-16 bg-stone-100/70">
+        <div class="container mx-auto px-5 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="bg-white rounded-2xl shadow-xl p-8">
+                    <div class="mb-6">
+                        <h2 class="font-display text-3xl font-bold text-stone-800">Send us a <span
+                                class="gold-text-gradient">Message</span></h2>
+                        <p class="text-stone-500 mt-2">Fill out the form below and we'll get back to you within 24
+                            hours.</p>
+                    </div>
+                    <form id="contactForm">
+                        <div class="grid md:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-stone-700 font-semibold mb-2 text-sm">Full Name *</label>
+                                <input type="text" id="fullName" placeholder="Enter your name"
+                                    class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-amber-400 outline-none input-focus transition">
+                            </div>
+                            <div>
+                                <label class="block text-stone-700 font-semibold mb-2 text-sm">Email Address *</label>
+                                <input type="email" id="emailId" placeholder="Enter your email"
+                                    class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-amber-400 outline-none input-focus transition">
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-5 mt-5">
+                            <div>
+                                <label class="block text-stone-700 font-semibold mb-2 text-sm">Phone Number *</label>
+                                <input type="tel" id="mobileNo" placeholder="Enter your phone"
+                                    class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-amber-400 outline-none input-focus transition">
+                            </div>
+                            <div>
+                                <label class="block text-stone-700 font-semibold mb-2 text-sm">Subject</label>
+                                <select id="subject"
+                                    class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-amber-400 outline-none input-focus transition">
+                                    <option value="">Select Subject</option>
+                                    <option value="Plot Inquiry">Plot Inquiry</option>
+                                    <option value="Site Visit">Schedule Site Visit</option>
+                                    <option value="Investment">Investment Query</option>
+                                    <option value="General">General Query</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-5">
+                            <label class="block text-stone-700 font-semibold mb-2 text-sm">Message *</label>
+                            <textarea rows="4" id="message" placeholder="Tell us about your requirements..."
+                                class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-amber-400 outline-none input-focus transition"></textarea>
+                        </div>
+                        <div class="mt-6">
+                            <button type="submit"
+                                class="w-full btn-gold text-stone-900 font-extrabold py-3 rounded-xl transition-all text-lg shadow-md">Send
+                                Message <i class="fas fa-paper-plane ml-2"></i></button>
+                        </div>
+                        <div id="formSuccessMsg" class="hidden mt-4 p-3 bg-green-600 rounded-lg text-white text-center">
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Map & Location Details -->
+                <div>
+                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-6">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.123456789012!2d77.5945627!3d12.9715987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c9b44e6d%3A0xf8e6e5e5b5c5d5e5!2sBangalore!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                            width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div class="bg-white rounded-2xl shadow-xl p-6">
+                        <h3 class="font-bold text-xl text-stone-800 mb-4 flex items-center gap-2"><i
+                                class="fas fa-location-dot text-amber-600"></i> Our Location</h3>
+                        <p class="text-stone-600 mb-4">Sreenidhi Plotted Development, Behind Collector's Bungalow,
+                            NH-44, Sreenidhi Nagar, Hyderabad - 500081</p>
+                        <div class="flex flex-wrap gap-4 pt-4 border-t border-stone-200">
+                            <div class="flex items-center gap-2"><i
+                                    class="fab fa-whatsapp text-green-500 text-xl"></i><span class="text-sm">+91 98765
+                                    43210</span></div>
+                            <div class="flex items-center gap-2"><i
+                                    class="fab fa-instagram text-pink-500 text-xl"></i><span
+                                    class="text-sm">@sreenidhi_realty</span></div>
+                            <div class="flex items-center gap-2"><i
+                                    class="fab fa-facebook text-blue-600 text-xl"></i><span
+                                    class="text-sm">/sreenidhiplots</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FAQ SECTION ================= -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-5 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span
+                    class="text-amber-600 font-bold tracking-wider uppercase text-sm bg-amber-100 px-4 py-1 rounded-full">FAQ</span>
+                <h2 class="font-display text-4xl md:text-5xl font-extrabold mt-3 text-stone-800">Frequently Asked <span
+                        class="gold-text-gradient">Questions</span></h2>
+                <p class="text-stone-500 mt-4">Find quick answers to common queries about our projects.</p>
+            </div>
+            <div class="max-w-3xl mx-auto">
+                <div class="mb-4 border border-stone-200 rounded-xl overflow-hidden">
+                    <button
+                        class="faq-question w-full text-left p-5 font-semibold text-stone-800 bg-stone-50 hover:bg-amber-50 transition flex justify-between items-center">
+                        <span>Is Sreenidhi a DTCP approved project?</span>
+                        <i class="fas fa-chevron-down text-amber-600"></i>
+                    </button>
+                    <div class="faq-answer hidden p-5 pt-0 text-stone-600 border-t border-stone-200">
+                        Yes, Sreenidhi Plotted Development is fully DTCP approved with all necessary clearances and RERA
+                        registered.
+                    </div>
+                </div>
+                <div class="mb-4 border border-stone-200 rounded-xl overflow-hidden">
+                    <button
+                        class="faq-question w-full text-left p-5 font-semibold text-stone-800 bg-stone-50 hover:bg-amber-50 transition flex justify-between items-center">
+                        <span>What are the plot sizes available?</span>
+                        <i class="fas fa-chevron-down text-amber-600"></i>
+                    </button>
+                    <div class="faq-answer hidden p-5 pt-0 text-stone-600 border-t border-stone-200">
+                        We offer plots ranging from 1200 sq.ft to 2400+ sq.ft with various configurations including
+                        corner plots and canal-facing plots.
+                    </div>
+                </div>
+                <div class="mb-4 border border-stone-200 rounded-xl overflow-hidden">
+                    <button
+                        class="faq-question w-full text-left p-5 font-semibold text-stone-800 bg-stone-50 hover:bg-amber-50 transition flex justify-between items-center">
+                        <span>Is bank loan available for purchasing plots?</span>
+                        <i class="fas fa-chevron-down text-amber-600"></i>
+                    </button>
+                    <div class="faq-answer hidden p-5 pt-0 text-stone-600 border-t border-stone-200">
+                        Yes, all our projects are approved by leading banks including SBI, HDFC, ICICI, and Axis Bank
+                        for home loans.
+                    </div>
+                </div>
+                <div class="mb-4 border border-stone-200 rounded-xl overflow-hidden">
+                    <button
+                        class="faq-question w-full text-left p-5 font-semibold text-stone-800 bg-stone-50 hover:bg-amber-50 transition flex justify-between items-center">
+                        <span>Can I schedule a site visit?</span>
+                        <i class="fas fa-chevron-down text-amber-600"></i>
+                    </button>
+                    <div class="faq-answer hidden p-5 pt-0 text-stone-600 border-t border-stone-200">
+                        Absolutely! You can call us directly or fill out the contact form to schedule a free site visit
+                        at your convenience.
+                    </div>
+                </div>
+                <div class="mb-4 border border-stone-200 rounded-xl overflow-hidden">
+                    <button
+                        class="faq-question w-full text-left p-5 font-semibold text-stone-800 bg-stone-50 hover:bg-amber-50 transition flex justify-between items-center">
+                        <span>What are the payment options available?</span>
+                        <i class="fas fa-chevron-down text-amber-600"></i>
+                    </button>
+                    <div class="faq-answer hidden p-5 pt-0 text-stone-600 border-t border-stone-200">
+                        We offer flexible payment plans including down payment, construction-linked plan, and easy EMI
+                        options with bank loans.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CTA SECTION ================= -->
+    <section class="py-16 bg-gradient-to-r from-amber-50 to-stone-100">
+        <div class="container mx-auto px-5 lg:px-8 text-center">
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-stone-800">Ready to Find Your Dream Plot?</h2>
+            <p class="text-stone-600 mt-3 mb-6">Connect with our sales team for personalized assistance.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="tel:+919876543210"
+                    class="bg-stone-800 text-white px-8 py-3 rounded-full font-bold inline-flex items-center gap-2 shadow-lg hover:bg-amber-700 transition">Call
+                    Now <i class="fas fa-phone-alt ml-1"></i></a>
+                <a href="https://wa.me/919876543210?text=Hello%21%20I%27m%20interested%20in%20Sreenidhi%20plots.%20Please%20share%20more%20details."
+                    target="_blank"
+                    class="btn-gold text-stone-900 px-8 py-3 rounded-full font-bold inline-flex items-center gap-2 shadow-lg">WhatsApp
+                    Us <i class="fab fa-whatsapp ml-1"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ================= -->
+    <footer class="bg-stone-900 text-stone-300 border-t border-stone-800">
+        <div class="container mx-auto px-5 lg:px-8 py-12">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4"><i class="fas fa-crown text-amber-500 text-2xl"></i><span
+                            class="font-display font-bold text-xl text-white">SREENIDHI<span
+                                class="text-amber-500">.</span></span></div>
+                    <p class="text-sm leading-relaxed">DTCP approved plotted development spread across 20 acres of prime
+                        land with world-class infrastructure.</p>
+                    <div class="flex gap-4 mt-4"><i
+                            class="fab fa-facebook-f hover:text-amber-400 cursor-pointer text-lg"></i><i
+                            class="fab fa-instagram hover:text-amber-400 cursor-pointer text-lg"></i><i
+                            class="fab fa-youtube hover:text-amber-400 cursor-pointer text-lg"></i></div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white text-lg mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="./index.html" class="hover:text-amber-400 transition">Home</a></li>
+                        <li><a href="./PROJECTS/project.html" class="hover:text-amber-400 transition">Our Projects</a>
+                        </li>
+                        <li><a href="#amenities" class="hover:text-amber-400 transition">Gallery</a></li>
+                        <li><a href="#why-choose" class="hover:text-amber-400 transition">Blogs</a></li>
+                        <li><a href="./ABOUT/about.html" class="hover:text-amber-400 transition">About Us</a></li>
+                        <li><a href="./CONTACT/contact.html" class="hover:text-amber-400 transition">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white text-lg mb-4">Contact Info</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><i class="fas fa-map-marker-alt text-amber-400 w-5"></i> Behind Collector's Bungalow, NH-44,
+                            Sreenidhi Nagar</li>
+                        <li><i class="fas fa-phone-alt text-amber-400 w-5"></i> +91 98765 43210</li>
+                        <li><i class="fas fa-envelope text-amber-400 w-5"></i> sales@sreenidhi.co.in</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white text-lg mb-4">Subscribe</h4>
+                    <p class="text-sm mb-3">Get updates on new projects and offers.</p>
+                    <form id="subscribeForm" class="flex flex-col gap-3"><input type="email" id="subscribeEmail"
+                            placeholder="Your Email"
+                            class="bg-stone-800 border border-stone-700 rounded-xl p-3 text-white placeholder-stone-400 outline-none focus:ring-2 focus:ring-amber-400"><button
+                            type="submit" class="btn-gold text-stone-900 font-bold py-2 rounded-xl">Subscribe <i
+                                class="fas fa-paper-plane ml-1"></i></button>
+                        <div id="subscribeMsg" class="text-xs text-green-400 hidden"></div>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-stone-800 mt-10 pt-6 text-center text-sm text-stone-400">
+                <p>© 2025 SREENIDHI PLOTTED DEVELOPMENT. All Rights Reserved.  </p>
+                <p class="mt-2">Developed by <a href="https://www.vspazetechnologies.in" target="_blank"
+                        class="text-amber-400 hover:text-amber-300 transition font-medium">Vspaze Technologies</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileBtn) {
+            mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        }
+
+        // Navbar scroll effect
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+
+        // FAQ Accordion
+        const faqButtons = document.querySelectorAll('.faq-question');
+        faqButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                answer.classList.toggle('hidden');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+            });
+        });
+
+        // Contact Form Handler
+        const contactForm = document.getElementById('contactForm');
+        const successDiv = document.getElementById('formSuccessMsg');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('fullName')?.value.trim();
+                const email = document.getElementById('emailId')?.value.trim();
+                const phone = document.getElementById('mobileNo')?.value.trim();
+                if (!name || !email || !phone) {
+                    alert("Please fill all required fields");
+                    return;
+                }
+                if (!email.includes('@')) {
+                    alert("Please enter a valid email address");
+                    return;
+                }
+                successDiv.classList.remove('hidden');
+                successDiv.innerHTML = "✅ Thank you " + name + "! Our team will contact you within 24 hours.";
+                contactForm.reset();
+                setTimeout(() => {
+                    successDiv.classList.add('hidden');
+                }, 5000);
+            });
+        }
+
+        // Subscribe form handler
+        const subscribeForm = document.getElementById('subscribeForm');
+        const subscribeMsg = document.getElementById('subscribeMsg');
+        if (subscribeForm) {
+            subscribeForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('subscribeEmail')?.value.trim();
+                if (!email || !email.includes('@')) {
+                    alert("Please enter a valid email address");
+                    return;
+                }
+                subscribeMsg.classList.remove('hidden');
+                subscribeMsg.innerHTML = "✅ Subscribed successfully!";
+                subscribeMsg.classList.add('block');
+                document.getElementById('subscribeEmail').value = '';
+                setTimeout(() => {
+                    subscribeMsg.classList.add('hidden');
+                    subscribeMsg.classList.remove('block');
+                }, 4000);
+            });
+        }
+
+        // Scroll to Top Button with Smooth Slow Scroll
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            const startPosition = window.pageYOffset;
+            const targetPosition = 0;
+            const distance = startPosition - targetPosition;
+            const duration = 2500; // Longer duration for slower scroll (1.5 seconds)
+            let startTime = null;
+
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const run = easeInOutCubic(timeElapsed, startPosition, -distance, duration);
+                window.scrollTo(0, run);
+                if (timeElapsed < duration) requestAnimationFrame(animation);
+            }
+
+            // Easing function for smooth slow motion
+            function easeInOutCubic(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t * t + b;
+                t -= 2;
+                return c / 2 * (t * t * t + 2) + b;
+            }
+
+            requestAnimationFrame(animation);
+        });
+    </script>
+</body>
+
+</html>
