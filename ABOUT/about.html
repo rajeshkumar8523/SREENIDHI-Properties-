@@ -204,8 +204,8 @@
                 width: 50px;
                 height: 50px;
                 font-size: 25px;
-                bottom: 20px;
-                right: 20px;
+                bottom: 100px;
+                right: 28px;
             }
         }
 
@@ -271,8 +271,8 @@
             <div class="hidden md:flex gap-8 lg:gap-10 font-semibold text-stone-700 ml-auto">
                 <a href="../index.html" class="nav-link hover:text-amber-600 transition">Home</a>
                 <a href="../PROJECTS/project.html" class="nav-link hover:text-amber-600 transition">Our Projects</a>
-                <a href="#" class="nav-link hover:text-amber-600 transition">Gallery</a>
-                <a href="#" class="nav-link hover:text-amber-600 transition">Blogs</a>
+                <a href="../GALLERY/gallery.html" class="nav-link hover:text-amber-600 transition">Gallery</a>
+                <a href="../BLOGS/blogs.html" class="nav-link hover:text-amber-600 transition">Blogs</a>
                 <a href="../ABOUT/about.html" class="nav-link text-amber-600 active-page transition">About Us</a>
                 <a href="../CONTACT/contact.html" class="nav-link hover:text-amber-600 transition">Contact Us</a>
             </div>
@@ -290,9 +290,9 @@
                     class="fas fa-home w-5"></i>Home</a>
             <a href="../PROJECTS/project.html" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
                     class="fas fa-building w-5"></i>Our Projects</a>
-            <a href="#" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
+            <a href="../GALLERY/gallery.html" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
                     class="fas fa-images w-5"></i>Gallery</a>
-            <a href="#" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
+            <a href="../BLOGS/blogs.html" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
                     class="fas fa-blog w-5"></i>Blogs</a>
             <a href="../ABOUT/about.html" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
                     class="fas fa-info-circle w-5"></i>About Us</a>
@@ -564,7 +564,7 @@
         </div>
     </section>
 
-    <!-- ==================== FOOTER ================= -->
+    <!-- ==================== OFFICIAL FOOTER with EMAIL SUBSCRIBE ================= -->
     <footer class="bg-stone-900 text-stone-300 border-t border-stone-800">
         <div class="container mx-auto px-5 lg:px-8 py-12">
             <div class="grid md:grid-cols-4 gap-8">
@@ -577,7 +577,8 @@
                     <div class="flex gap-4 mt-4"><i
                             class="fab fa-facebook-f hover:text-amber-400 cursor-pointer text-lg"></i><i
                             class="fab fa-instagram hover:text-amber-400 cursor-pointer text-lg"></i><i
-                            class="fab fa-youtube hover:text-amber-400 cursor-pointer text-lg"></i></div>
+                            class="fab fa-youtube hover:text-amber-400 cursor-pointer text-lg"></i><i
+                            class="fab fa-linkedin-in hover:text-amber-400 cursor-pointer text-lg"></i></div>
                 </div>
                 <div>
                     <h4 class="font-bold text-white text-lg mb-4">Quick Links</h4>
@@ -598,22 +599,25 @@
                             Sreenidhi Nagar</li>
                         <li><i class="fas fa-phone-alt text-amber-400 w-5"></i> +91 98765 43210</li>
                         <li><i class="fas fa-envelope text-amber-400 w-5"></i> sales@sreenidhi.co.in</li>
+                        <li><i class="fas fa-clock text-amber-400 w-5"></i> Mon-Sun: 9AM - 7PM</li>
                     </ul>
                 </div>
+                <!-- Email Subscription Section (replaced Legal & Approvals) -->
                 <div>
-                    <h4 class="font-bold text-white text-lg mb-4">Subscribe</h4>
-                    <p class="text-sm mb-3">Get updates on new projects and offers.</p>
+                    <h4 class="font-bold text-white text-lg mb-4">Subscribe for Updates</h4>
+                    <p class="text-sm text-stone-400 mb-3">Get latest project news, price drops & exclusive offers.</p>
                     <form id="subscribeForm" class="flex flex-col gap-3"><input type="email" id="subscribeEmail"
-                            placeholder="Your Email"
-                            class="bg-stone-800 border border-stone-700 rounded-xl p-3 text-white placeholder-stone-400 outline-none focus:ring-2 focus:ring-amber-400"><button
-                            type="submit" class="btn-gold text-stone-900 font-bold py-2 rounded-xl">Subscribe <i
-                                class="fas fa-paper-plane ml-1"></i></button>
+                            placeholder="Your Email Address"
+                            class="bg-stone-800 border border-stone-700 rounded-xl p-3 text-white placeholder-stone-400 outline-none focus:ring-2 focus:ring-amber-400 transition"><button
+                            type="submit"
+                            class="btn-gold text-stone-900 font-bold py-2.5 rounded-xl transition-all text-sm">Subscribe
+                            <i class="fas fa-paper-plane ml-1"></i></button>
                         <div id="subscribeMsg" class="text-xs text-green-400 hidden"></div>
                     </form>
                 </div>
             </div>
             <div class="border-t border-stone-800 mt-10 pt-6 text-center text-sm text-stone-400">
-                <p>© 2025 SREENIDHI PLOTTED DEVELOPMENT. All Rights Reserved. </p>
+                <p>© 2025 SREENIDHI PLOTTED DEVELOPMENT. All Rights Reserved.  </p>
                 <p class="mt-2">Developed by <a href="https://www.vspazetechnologies.in" target="_blank"
                         class="text-amber-400 hover:text-amber-300 transition font-medium">Vspaze Technologies</a></p>
             </div>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Sreenidhi | Contact Us - Premium Plotted Developments</title>
+    <title>Sreenidhi | Contact Us</title>
     <!-- Tailwind CSS v3 + Google Fonts + Font Awesome -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -17,8 +17,10 @@
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
+                        'float-slow': 'float 8s ease-in-out infinite',
                         'glow-pulse': 'glowPulse 2s ease-in-out infinite alternate',
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'shimmer': 'shimmer 2s linear infinite',
+                        'scale-gentle': 'scaleGentle 3s ease-in-out infinite',
                     },
                     keyframes: {
                         float: {
@@ -29,7 +31,18 @@
                             '0%': { boxShadow: '0 0 5px rgba(234,179,8,0.3)', borderColor: 'rgba(234,179,8,0.4)' },
                             '100%': { boxShadow: '0 0 25px rgba(234,179,8,0.8)', borderColor: '#eab308' },
                         },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' },
+                        },
+                        scaleGentle: {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(1.02)' },
+                        }
                     },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(circle at 50% 50%, var(--tw-gradient-stops))',
+                    }
                 }
             }
         }
@@ -51,30 +64,26 @@
             background: #fefcf5;
         }
 
-        /* Custom Smooth Scrollbar */
         ::-webkit-scrollbar {
-            width: 10px;
+            width: 8px;
         }
 
         ::-webkit-scrollbar-track {
             background: #ece9df;
-            border-radius: 10px;
         }
 
         ::-webkit-scrollbar-thumb {
             background: #c99e2e;
-            border-radius: 10px;
-            transition: background 0.3s ease;
+            border-radius: 12px;
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: #b8860b;
+        .card-hover {
+            transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
 
-        /* Firefox Scrollbar */
-        * {
-            scrollbar-width: thin;
-            scrollbar-color: #c99e2e #ece9df;
+        .card-hover:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 30px 40px -20px rgba(0, 0, 0, 0.25);
         }
 
         .btn-gold {
@@ -113,12 +122,6 @@
             background: #eab308;
         }
 
-        .nav-scrolled {
-            background: rgba(255, 255, 255, 0.95) !important;
-            backdrop-filter: blur(12px) !important;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08) !important;
-        }
-
         .floating-badge {
             animation: floatBadge 4s infinite;
         }
@@ -155,6 +158,7 @@
             box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.2);
             border-color: #eab308;
         }
+
 
         /* Floating WhatsApp Icon */
         .whatsapp-float {
@@ -214,8 +218,8 @@
                 width: 50px;
                 height: 50px;
                 font-size: 25px;
-                bottom: 20px;
-                right: 20px;
+                bottom: 100px;
+                right: 28px;
             }
         }
 
@@ -268,21 +272,24 @@
         <i class="fas fa-arrow-up"></i>
     </div>
 
-    <!-- ==================== NAVIGATION ================= -->
+    <!-- ==================== NAVIGATION (UPDATED) ================= -->
     <nav id="mainNav"
         class="fixed top-0 left-0 w-full z-50 bg-white/70 backdrop-blur-sm shadow-sm border-b border-amber-200/40 transition-all duration-300">
-        <div class="container mx-auto px-5 lg:px-8 py-3 flex justify-between items-center">
-            <div class="flex items-center gap-2 group cursor-pointer">
+        <div class="container mx-auto px-10 lg:px-8 py-3 flex justify-between items-center">
+            <!-- Logo Section -->
+            <div class="flex items-center gap-2 group cursor-pointer mr-10">
                 <i
                     class="fas fa-crown text-amber-600 text-3xl group-hover:rotate-12 transition-transform duration-300"></i>
                 <span class="font-display font-extrabold text-2xl tracking-tight text-stone-800">SREENIDHI<span
                         class="text-amber-600">.</span></span>
             </div>
+
+            <!-- Navigation Links - Moved to right with increased gap from logo -->
             <div class="hidden md:flex gap-8 lg:gap-10 font-semibold text-stone-700 ml-auto">
                 <a href="../index.html" class="nav-link hover:text-amber-600 transition">Home</a>
-                <a href="../PROJECTS/project.html" class="nav-link hover:text-amber-600 transition">Our Projects</a>
-                <a href="#" class="nav-link hover:text-amber-600 transition">Gallery</a>
-                <a href="#" class="nav-link hover:text-amber-600 transition">Blogs</a>
+                <a href="../PROJECTS/project.html" class="nav-link  hover:text-amber-600 transition">Our Projects</a>
+                <a href="../GALLERY/gallery.html" class="nav-link hover:text-amber-600 transition">Gallery</a>
+                <a href="../BLOGS/blogs.html" class="nav-link hover:text-amber-600 transition">Blogs</a>
                 <a href="../ABOUT/about.html" class="nav-link hover:text-amber-600 transition">About Us</a>
                 <a href="../CONTACT/contact.html" class="nav-link text-amber-600 active-page transition">Contact Us</a>
             </div>
@@ -300,9 +307,9 @@
                     class="fas fa-home w-5"></i>Home</a>
             <a href="../PROJECTS/project.html" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
                     class="fas fa-building w-5"></i>Our Projects</a>
-            <a href="#" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
+            <a href="../GALLERY/gallery.html" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
                     class="fas fa-images w-5"></i>Gallery</a>
-            <a href="#" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
+            <a href="../BLOGS/blogs.html" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
                     class="fas fa-blog w-5"></i>Blogs</a>
             <a href="../ABOUT/about.html" class="font-semibold py-2 hover:text-amber-600 flex items-center gap-2"><i
                     class="fas fa-info-circle w-5"></i>About Us</a>
@@ -556,7 +563,7 @@
         </div>
     </section>
 
-    <!-- ==================== FOOTER ================= -->
+    <!-- ==================== OFFICIAL FOOTER with EMAIL SUBSCRIBE ================= -->
     <footer class="bg-stone-900 text-stone-300 border-t border-stone-800">
         <div class="container mx-auto px-5 lg:px-8 py-12">
             <div class="grid md:grid-cols-4 gap-8">
@@ -569,7 +576,8 @@
                     <div class="flex gap-4 mt-4"><i
                             class="fab fa-facebook-f hover:text-amber-400 cursor-pointer text-lg"></i><i
                             class="fab fa-instagram hover:text-amber-400 cursor-pointer text-lg"></i><i
-                            class="fab fa-youtube hover:text-amber-400 cursor-pointer text-lg"></i></div>
+                            class="fab fa-youtube hover:text-amber-400 cursor-pointer text-lg"></i><i
+                            class="fab fa-linkedin-in hover:text-amber-400 cursor-pointer text-lg"></i></div>
                 </div>
                 <div>
                     <h4 class="font-bold text-white text-lg mb-4">Quick Links</h4>
@@ -590,22 +598,25 @@
                             Sreenidhi Nagar</li>
                         <li><i class="fas fa-phone-alt text-amber-400 w-5"></i> +91 98765 43210</li>
                         <li><i class="fas fa-envelope text-amber-400 w-5"></i> sales@sreenidhi.co.in</li>
+                        <li><i class="fas fa-clock text-amber-400 w-5"></i> Mon-Sun: 9AM - 7PM</li>
                     </ul>
                 </div>
+                <!-- Email Subscription Section (replaced Legal & Approvals) -->
                 <div>
-                    <h4 class="font-bold text-white text-lg mb-4">Subscribe</h4>
-                    <p class="text-sm mb-3">Get updates on new projects and offers.</p>
+                    <h4 class="font-bold text-white text-lg mb-4">Subscribe for Updates</h4>
+                    <p class="text-sm text-stone-400 mb-3">Get latest project news, price drops & exclusive offers.</p>
                     <form id="subscribeForm" class="flex flex-col gap-3"><input type="email" id="subscribeEmail"
-                            placeholder="Your Email"
-                            class="bg-stone-800 border border-stone-700 rounded-xl p-3 text-white placeholder-stone-400 outline-none focus:ring-2 focus:ring-amber-400"><button
-                            type="submit" class="btn-gold text-stone-900 font-bold py-2 rounded-xl">Subscribe <i
-                                class="fas fa-paper-plane ml-1"></i></button>
+                            placeholder="Your Email Address"
+                            class="bg-stone-800 border border-stone-700 rounded-xl p-3 text-white placeholder-stone-400 outline-none focus:ring-2 focus:ring-amber-400 transition"><button
+                            type="submit"
+                            class="btn-gold text-stone-900 font-bold py-2.5 rounded-xl transition-all text-sm">Subscribe
+                            <i class="fas fa-paper-plane ml-1"></i></button>
                         <div id="subscribeMsg" class="text-xs text-green-400 hidden"></div>
                     </form>
                 </div>
             </div>
             <div class="border-t border-stone-800 mt-10 pt-6 text-center text-sm text-stone-400">
-                <p>© 2025 SREENIDHI PLOTTED DEVELOPMENT. All Rights Reserved.  </p>
+                <p>© 2025 SREENIDHI PLOTTED DEVELOPMENT. All Rights Reserved. </p>
                 <p class="mt-2">Developed by <a href="https://www.vspazetechnologies.in" target="_blank"
                         class="text-amber-400 hover:text-amber-300 transition font-medium">Vspaze Technologies</a></p>
             </div>
